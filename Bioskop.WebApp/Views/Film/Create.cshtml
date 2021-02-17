@@ -1,0 +1,78 @@
+﻿@model Bioskop.WebApp.Models.CreateFilmViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Film</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Film.Naziv" class="control-label"></label>
+                <input asp-for="Film.Naziv" class="form-control" />
+                <span asp-validation-for="Film.Naziv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Film.Reziser" class="control-label"></label>
+                <input asp-for="Film.Reziser" class="form-control" />
+                <span asp-validation-for="Film.Reziser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Film.Zanr" class="control-label"></label>
+                <select class="form-control" asp-for="Film.Zanr">
+                    <option  value="0">Komedija</option>
+                    <option value="1">Akcija</option>
+                    <option value="2">Animirani</option>
+                    <option value="3">Horor</option>
+                    <option value="4">SciFi</option>
+                    <option value="5">Avantura</option>
+                    <option value="6">Drama</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Film.Trajanje" class="control-label"></label>
+                <input asp-for="Film.Trajanje" class="form-control" />
+                <span asp-validation-for="Film.Trajanje" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Film.Godina" class="control-label"></label>
+                <input asp-for="Film.Godina" class="form-control" />
+                <span asp-validation-for="Film.Godina" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Dostupne Sale:</label>
+                @Html.DropDownList("Sala",Model.Sale, new { @class="form-control", @id="sala-select" })
+            </div>
+            <button class="btn" id="add-sale">Dodaj salu</button>
+            <table class="table" id="projekcija">
+                <thead>
+                    <tr>
+                        <th>Sala Id</th>
+                        <th>Naziv</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        $('#add-sale').click(function (e){
+            e.preventDefault();
+            $('#projekcija tbody').append('<tr><td>'+$('#sala-select').val()+'</td></tr>')
+        });
+    </script>
+}
