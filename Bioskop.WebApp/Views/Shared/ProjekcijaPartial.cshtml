@@ -1,0 +1,10 @@
+﻿@model  Bioskop.WebApp.Models.ProjekcijaViewModel
+
+    <tr>
+        <td>@(Model.Num+1) </td>
+        <td>@Model.SalaId
+            <input hidden value="@Model.SalaId" name="Film.Sale[@Model.Num].SalaId" />
+        </td>
+        <td>@Model.NazivSale</td>
+        <td>@Model.Slobodna</td>
+    </tr>

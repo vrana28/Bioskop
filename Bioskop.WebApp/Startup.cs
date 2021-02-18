@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bioskop.Domen;
 using Bioskop.Podaci.UnitOfWork;
+using Bioskop.Podaci.UnitOfWork.Korisnici;
+using Bioskop.WebApp.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace Bioskop.WebApp
 {
@@ -25,10 +28,19 @@ namespace Bioskop.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // servisi za sesije
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);    // nakon nekog vremena brise se sesija
+            });
+
             services.AddControllersWithViews();
             services.AddScoped<IUnitOfWork, BioskopUnitOfWork>(); // ovde smo registrovali servis koji ce da se poziva kod kontrolera,
             // odnosno kad controler zatrazi IunitOfWork ti mu prosledi BioskopUnitOfWork..
+            services.AddScoped<IKorisniciUnitOfWork, KorisniciUnitOfWork>();
             services.AddDbContext<BioskopContext>(); // moramo i kontekst da ubacimo
+            services.AddDbContext<KorisnikContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +60,9 @@ namespace Bioskop.WebApp
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            
+            app.UseSession(); // sesija treba da se koristi nakon rutiranja i pre endpoint-a
+            app.UseCheckIfUserIsLoggedInMiddleware(); // mora da  se void racuna o redosledu
             app.UseAuthorization();
 
             //localhost:9999/Bioskop/Index/5
@@ -56,7 +70,7 @@ namespace Bioskop.WebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Film}/{action=Index}/{id?}");
+                    pattern: "{controller=Korisnik}/{action=Login}/{id?}");
             });
         }
     }

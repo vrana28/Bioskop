@@ -52,8 +52,10 @@
             <table class="table" id="projekcija">
                 <thead>
                     <tr>
+                        <th>Num</th>
                         <th>Sala Id</th>
                         <th>Naziv</th>
+                        <th>Slobodna</th>
                     </tr>
                 </thead>
             </table>
@@ -64,15 +66,24 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     <script>
         $('#add-sale').click(function (e){
-            e.preventDefault();
-            $('#projekcija tbody').append('<tr><td>'+$('#sala-select').val()+'</td></tr>')
+             e.preventDefault();
+            //$('#projekcija tbody').append('<tr><td>' + '<input hidden value="' + $('#sala-select').val() +
+            //    '" name="Film.Sale[0].SalaId"/> '+$('#sala-select').val() + '</td></tr>')
+            $.ajax({
+                url: '@Url.ActionLink("AddSala","Film")',
+                method: 'post',
+                data: { SalaId: $('#sala-select').val(), Num: $('#projekcija tbody tr').length },
+                success: function (data) {
+                    $('#projekcija tbody').append(data);
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
         });
     </script>
 }

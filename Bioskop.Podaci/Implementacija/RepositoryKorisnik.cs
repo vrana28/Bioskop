@@ -8,8 +8,8 @@ namespace Bioskop.Podaci.Implementacija
 {
     public class RepositoryKorisnik : IRepositoryKorisnik
     {
-        private BioskopContext context;
-        public RepositoryKorisnik(BioskopContext context)
+        private KorisnikContext context;
+        public RepositoryKorisnik(KorisnikContext context)
         {
             this.context = context;
         }
@@ -29,6 +29,11 @@ namespace Bioskop.Podaci.Implementacija
             context.Korisnik.Add(s);
         }
 
+        public Korisnik GetByUsernameAndPassword(Korisnik k)
+        {
+            return context.Korisnik.Single(s => s.Username == k.Username && s.Password == k.Password);
+        }
+
         public Korisnik NadjiPoId(int id)
         {
             return context.Korisnik.Find(id);
@@ -37,6 +42,11 @@ namespace Bioskop.Podaci.Implementacija
         public void Update(Korisnik s)
         {
             throw new NotImplementedException();
+        }
+
+        public bool VecPostoji(string username)
+        {
+            return context.Korisnik.Any(k => k.Username == username);
         }
 
         public List<Korisnik> VratiSve()

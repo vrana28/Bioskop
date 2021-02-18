@@ -16,13 +16,11 @@ namespace Bioskop.Podaci.UnitOfWork
             Film = new RepositoryFilm(this.context);
             Sala = new RepositorySala(this.context);
             Karta = new RepositoryKarta(this.context);
-            Korisnik = new RepositoryKorisnik(this.context);
             Projekcija = new RepositoryProjekcija(this.context);
         }
         public IRepositoryFilm Film { get; set; }
         public IRepositorySala Sala { get; set; }
         public IRepositoryKarta Karta { get; set; }
-        public IRepositoryKorisnik Korisnik { get; set; }
         public IRepositoryProjekcija Projekcija { get; set; }
         public void Commit()
         {
@@ -32,6 +30,6 @@ namespace Bioskop.Podaci.UnitOfWork
         public void Dispose()
         {
             context.Dispose();
-        }
+         }
     }
 }

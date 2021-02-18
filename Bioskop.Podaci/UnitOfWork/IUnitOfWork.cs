@@ -8,7 +8,6 @@ namespace Bioskop.Podaci.UnitOfWork
     { // ovde i disposable - oslobadjanje resursa
         public IRepositoryFilm Film{ get; set; }
         public IRepositorySala Sala{ get; set; }
-        public IRepositoryKorisnik Korisnik { get; set; }
         public IRepositoryKarta Karta { get; set; }
         public IRepositoryProjekcija Projekcija { get; set; }
         void Commit();
