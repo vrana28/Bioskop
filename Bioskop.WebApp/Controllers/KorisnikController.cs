@@ -52,11 +52,7 @@ namespace Bioskop.WebApp.Controllers
             }
         }
 
-        // GET: Korisnik/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+
 
         // GET: Korisnik/Create
         [ActionName("Register")]
@@ -102,21 +98,5 @@ namespace Bioskop.WebApp.Controllers
             return RedirectToAction("Login");
         }
 
-        // POST: Korisnik/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

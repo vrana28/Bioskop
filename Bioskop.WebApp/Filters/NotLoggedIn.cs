@@ -7,15 +7,19 @@ using System.Threading.Tasks;
 
 namespace Bioskop.WebApp.Filters
 {
-    public class LoggedInKorisnik:ActionFilterAttribute
+    public class NotLoggedIn : ActionFilterAttribute
     {
-        // izvrsava se pre izvrsavanja akcije ili posle
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (context.HttpContext.Session.GetInt32("userid") == null) {
+            if (context.Filters.OfType<NotLoggedIn>().Any()) {
+                return;
+            }
+
+            if (context.HttpContext.Session.GetInt32("userid") == null)
+            {
                 context.HttpContext.Response.Redirect("/Korisnik/Login");
                 return;
             }
-        }
+        } 
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bioskop.Domen;
 using Bioskop.Podaci.UnitOfWork;
+using Bioskop.WebApp.Filters;
 using Bioskop.WebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using Newtonsoft.Json;
 
 namespace Bioskop.WebApp.Controllers
 {
+    [LoggedInKorisnik] // moze da se stavi na njivou kontrolera
     public class FilmController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
@@ -21,6 +23,7 @@ namespace Bioskop.WebApp.Controllers
         }
 
         // GET: Film
+        [NotLoggedIn]
         public ActionResult Index()
         {
             List<Film> filmovi = unitOfWork.Film.VratiSve();
@@ -32,16 +35,17 @@ namespace Bioskop.WebApp.Controllers
                 //byte[] userBy = HttpContext.Session.Get("user"); // user je key
                 //Korisnik k = JsonSerializer.Deserialize<Korisnik>(userBy); nece 22:43
                 // za slucaj korpe je pozeljno koristiti serijalizaciju/deserijalizaciju objekta
-                
+
             }
             else
             {
                 return RedirectToAction("Login", "Korisnik");
             }
-            return View("Index",filmovi);
+            return View("Index", filmovi);
         }
 
         // eksplicitno naglasavanje da dolazi iz rute.. [FromRoute] 
+        [NotLoggedIn]
         public ActionResult Details([FromRoute] int id) {
 
             Film model = unitOfWork.Film.NadjiPoId(id);

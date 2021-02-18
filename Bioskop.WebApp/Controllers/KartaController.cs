@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bioskop.WebApp.Filters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bioskop.WebApp.Controllers
 {
+    [LoggedInKorisnik]
     public class KartaController : Controller
     {
         // GET: Karta

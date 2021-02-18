@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bioskop.Domen;
 using Bioskop.Podaci.UnitOfWork;
+using Bioskop.WebApp.Filters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bioskop.WebApp.Controllers
 {
+    [LoggedInKorisnik]
     public class SalaController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
