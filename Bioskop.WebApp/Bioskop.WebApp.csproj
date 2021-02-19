@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebHelpers" Version="3.2.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -15,6 +16,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Bioskop.Domen\Bioskop.Domen.csproj" />
     <ProjectReference Include="..\Bioskop.Podaci\Bioskop.Podaci.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\img\upload-img\" />
   </ItemGroup>
 
 </Project>

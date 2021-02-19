@@ -37,9 +37,9 @@
                 @Html.DisplayFor(modelItem => item.Slobodna)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.SalaId }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Promeni", "Edit", new { id=item.SalaId }) |
+                @Html.ActionLink("Detalji", "Details", new { id=item.SalaId}) |
+                @Html.ActionLink("Obrisi", "Delete", new { id=item.SalaId })
             </td>
         </tr>
 }

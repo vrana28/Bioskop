@@ -24,7 +24,7 @@ namespace BioskopKonzolnaApp
 
             using IUnitOfWork uow = new BioskopUnitOfWork(new BioskopContext());
             uow.Film.Dodaj(new Film{ Naziv ="Alisa u zemlji Cuda",Godina=2008,Reziser="Pera",Trajanje=95,Zanr = Zanr.Komedija});
-            uow.Korisnik.Delete(context.Korisnik.First());
+            //uow.Korisnik.Delete(context.Korisnik.First());
             uow.Commit();
 
         }

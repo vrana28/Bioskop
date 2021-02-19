@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Bioskop.Domen;
 using Bioskop.Podaci.UnitOfWork;
 using Bioskop.WebApp.Filters;
+using Bioskop.WebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,8 +21,9 @@ namespace Bioskop.WebApp.Controllers
         }
         // GET: Sala
         public ActionResult Index()
-        {   
-
+        {
+            ViewBag.IsLoggedIn = true;
+            ViewBag.Username = HttpContext.Session.GetString("username");
             return View(unitOfWork.Sala.VratiSve());
         }
 
@@ -34,23 +36,26 @@ namespace Bioskop.WebApp.Controllers
         // GET: Sala/Create
         public ActionResult Create()
         {
+            ViewBag.IsLoggedIn = true;
+            ViewBag.Username = HttpContext.Session.GetString("username");
             return View();
         }
 
         // POST: Sala/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([FromRoute]Sala sala)
+        public ActionResult Create(CreateSalaViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
+                unitOfWork.Sala.Dodaj(model.Sala);
+                unitOfWork.Commit();
+                return RedirectToAction("Index", "Sala");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return RedirectToAction("Create");
             }
         }
 
@@ -80,7 +85,9 @@ namespace Bioskop.WebApp.Controllers
         // GET: Sala/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+
+
+            return View("Index");
         }
 
         // POST: Sala/Delete/5

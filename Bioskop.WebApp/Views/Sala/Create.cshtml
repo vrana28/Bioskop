@@ -1,4 +1,4 @@
-﻿@model Bioskop.Domen.Sala
+﻿@model Bioskop.WebApp.Models.CreateSalaViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -9,19 +9,20 @@
 <h4>Sala</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="w-100 p-3">
+        <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="NazivSale" class="control-label"></label>
-                <input asp-for="NazivSale" class="form-control" />
-                <span asp-validation-for="NazivSale" class="text-danger"></span>
+                <label asp-for="Sala.NazivSale" class="control-label"></label>
+                <input asp-for="Sala.NazivSale" class="form-control" />
+                <span asp-validation-for="Sala.NazivSale" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Slobodna" /> @Html.DisplayNameFor(model => model.Slobodna)
-                </label>
+            <div class="form-group">
+                <label asp-for="Sala.Slobodna" class="control-label"></label><br />
+                Da: @Html.RadioButtonFor(m => m.Sala.Slobodna, true)<br />
+                Ne: @Html.RadioButtonFor(m => m.Sala.Slobodna, false)<br />
+                <span asp-validation-for="Sala.NazivSale" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

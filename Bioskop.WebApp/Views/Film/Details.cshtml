@@ -1,7 +1,44 @@
 ﻿@model Film
+@{
+    ViewData["Title"] = "Detalji o filmu";
+}
 
-<h2>Film</h2>
+<div class="container prva-slika">
+    
+    <div class="zanr">
+    </div>
+    <div class="PosterFilma">
+        @*<img src="@Model.PutanjaPostera" class="movie-img" style="width:200px;">*@
 
-<h3>Naziv:@Model.FilmId</h3>
-<h3>Naziv:@Model.Naziv</h3>
+    </div>
+    <div class="col-md-6 left-box">
 
+    </div>
+
+</div>
+<div class="container movie-details">
+
+
+    <div class="dugmad">
+        <div class="col-md-6 left-box">
+
+
+
+            <a href="https://www.youtube.com/watch?v=8ndhidEmUbI&ab_channel=WarnerBros.Pictures"><i class="fa fa-play" aria-hidden="true"></i>   Gledaj trailer </a>
+            <a href="#" class=" kupovina"><i class="fa fa-ticket" aria-hidden="true"></i>   Kupi kartu </a>
+
+        </div>
+        <br>
+        <hr>
+        <div class="duzinaTrajanja"><i class="far fa-clock" aria-hidden="true"></i> @Model.Trajanje.ToString()min</div>
+        <div class="GodinaIzlaska"><i class="fa fa-calendar" aria-hidden="true"> </i> @Model.Godina.ToString() </div>
+    </div>
+
+
+
+    <div class="opisfilma" style="text-align:right">
+        <h1>@Model.Naziv</h1>
+        <p>  Ovde treba da dodje neki opis filma</p>
+
+    </div>
+</div>

@@ -14,6 +14,8 @@ namespace Bioskop.WebApp.Controllers
         // GET: Karta
         public ActionResult Index()
         {
+            ViewBag.IsLoggedIn = true;
+            ViewBag.Username = HttpContext.Session.GetString("username");
             return View("Index");
         }
 
