@@ -54,6 +54,8 @@ namespace Bioskop.WebApp.Controllers
         public ActionResult Details([FromRoute] int id) {
 
             Film model = unitOfWork.Film.NadjiPoId(id);
+            ViewBag.IsLoggedIn = true;
+            ViewBag.Username = HttpContext.Session.GetString("username");
             //model.PutanjaBackPostera = model.PutanjaBackPostera.Replace("//")
             return View(model);
         }
@@ -133,6 +135,18 @@ namespace Bioskop.WebApp.Controllers
                 Slobodna = s.Slobodna
             };
             return PartialView("ProjekcijaPartial",model);
+        }
+
+        [NotLoggedIn]
+        public ActionResult Delete([FromRoute] int id)
+        {
+
+            Film model = unitOfWork.Film.NadjiPoId(id);
+            ViewBag.IsLoggedIn = true;
+            ViewBag.Username = HttpContext.Session.GetString("username");
+            unitOfWork.Film.Delete(model);
+            unitOfWork.Commit();
+            return RedirectToAction("Index");
         }
 
     }

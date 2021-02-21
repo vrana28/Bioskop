@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BioskopKonzolnaApp", "Biosk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bioskop.Podaci", "Bioskop.Podaci\Bioskop.Podaci.csproj", "{163E1EB4-537D-4A3B-8750-85FE76747A01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bioskop.WebApp", "Bioskop.WebApp\Bioskop.WebApp.csproj", "{EE7D1146-9F5F-4A1C-AA1F-40396E439A56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bioskop.WebApp", "Bioskop.WebApp\Bioskop.WebApp.csproj", "{EE7D1146-9F5F-4A1C-AA1F-40396E439A56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bioskop.WebApi", "Bioskop.WebApi\Bioskop.WebApi.csproj", "{90CD8D73-D453-4D0B-B324-11481B1A4AE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncAwait", "AsyncAwait\AsyncAwait.csproj", "{23254B8A-33F6-4D02-BA56-5F60086603A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{EE7D1146-9F5F-4A1C-AA1F-40396E439A56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE7D1146-9F5F-4A1C-AA1F-40396E439A56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE7D1146-9F5F-4A1C-AA1F-40396E439A56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90CD8D73-D453-4D0B-B324-11481B1A4AE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90CD8D73-D453-4D0B-B324-11481B1A4AE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90CD8D73-D453-4D0B-B324-11481B1A4AE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90CD8D73-D453-4D0B-B324-11481B1A4AE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23254B8A-33F6-4D02-BA56-5F60086603A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23254B8A-33F6-4D02-BA56-5F60086603A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23254B8A-33F6-4D02-BA56-5F60086603A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23254B8A-33F6-4D02-BA56-5F60086603A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

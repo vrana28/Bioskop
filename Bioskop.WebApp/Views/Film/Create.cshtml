@@ -1,30 +1,37 @@
 ﻿@model Bioskop.WebApp.Models.CreateFilmViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Unos Filma";
 }
 
-<h1>Create</h1>
+<h1 class="display-4">Unos Filma</h1>
 
-<h4>Film</h4>
 <hr />
 <div class="row">
     <div class="w-100 p-3">
-        <form asp-action="Create" method="post", new {enctype = "multipart/form-data"}>
+        <form asp-action="Create" method="post" , new {enctype="multipart/form-data" }>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Film.Naziv" class="control-label"></label>
-                <input asp-for="Film.Naziv" class="form-control" />
-                <span asp-validation-for="Film.Naziv" class="text-danger"></span>
+            <div>
+                <div class="form-group div1">
+                    <label asp-for="Film.Naziv" class="control-label"></label>
+                    <input asp-for="Film.Naziv" class="form-control" style="width:100%" />
+                    <span asp-validation-for="Film.Naziv" class="text-danger"></span>
+                </div>
+                <div class="form-group div2">
+                    <label asp-for="Film.OpisFilma" class="control-label"></label>
+                    @*<input asp-for="Film.OpisFilma" class="text-" style="width:100%; height:200px" />*@
+                    <textarea asp-for="Film.OpisFilma" class="form-control" rows="3" style="height: 400px;"></textarea>
+                    <span asp-validation-for="Film.OpisFilma" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Film.Reziser" class="control-label"></label>
-                <input asp-for="Film.Reziser" class="form-control" />
+                <input asp-for="Film.Reziser" class="form-control" style="width:40%" />
                 <span asp-validation-for="Film.Reziser" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Film.Zanr" class="control-label"></label>
-                <select class="form-control" asp-for="Film.Zanr">
+                <select class="form-control" style="width:40%" asp-for="Film.Zanr">
                     <option value="0">Komedija</option>
                     <option value="1">Akcija</option>
                     <option value="2">Animirani</option>
@@ -36,18 +43,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="Film.Trajanje" class="control-label"></label>
-                <input asp-for="Film.Trajanje" class="form-control" />
+                <input asp-for="Film.Trajanje" class="form-control" style="width:40%" />
                 <span asp-validation-for="Film.Trajanje" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Film.Godina" class="control-label"></label>
-                <input asp-for="Film.Godina" class="form-control" />
+                <input asp-for="Film.Godina" class="form-control" style="width:40%" />
                 <span asp-validation-for="Film.Godina" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label class="control-label">Dostupne Sale:</label>
-                @Html.DropDownList("Sala", Model.Sale, new { @class = "form-control", @id = "sala-select" })
-            </div>
+            @*<div class="form-group">
+            <label class="control-label">Dostupne Sale:</label>
+            @Html.DropDownList("Sala", Model.Sale, new { @class = "form-control", @id = "sala-select" })
+        </div>*@
             <div class="form-group">
                 <label asp-for="Film.PutanjaPostera" class="control-label"></label>
                 <input asp-for="Film.PutanjaPostera" class="form-control" />
@@ -58,18 +65,22 @@
                 <input asp-for="Film.PutanjaBackPostera" class="form-control" />
                 <span asp-validation-for="Film.PutanjaBackPostera" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="Film.YoutubeTrailer" class="control-label"></label>
+                <input asp-for="Film.YoutubeTrailer" class="form-control" />
+                <span asp-validation-for="Film.YoutubeTrailer" class="text-danger"></span>
+            </div>
             @*<button class="btn" id="add-sale">Dodaj salu</button>
-            <table class="table" id="projekcija">
-                <thead>
-                    <tr>
-                        <th>Num</th>
-                        <th>Sala Id</th>
-                        <th>Naziv</th>
-                        <th>Slobodna</th>
-                    </tr>
-                </thead>
-            </table>*@
+        <table class="table" id="projekcija">
+            <thead>
+                <tr>
+                    <th>Num</th>
+                    <th>Sala Id</th>
+                    <th>Naziv</th>
+                    <th>Slobodna</th>
+                </tr>
+            </thead>
+        </table>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

@@ -7,6 +7,7 @@ using Bioskop.Podaci.UnitOfWork;
 using Bioskop.Podaci.UnitOfWork.Korisnici;
 using Bioskop.WebApp.Filters;
 using Bioskop.WebApp.Middlewares;
+using Bioskop.WebApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -44,6 +45,7 @@ namespace Bioskop.WebApp
             services.AddScoped<NotLoggedIn>();
             services.AddDbContext<BioskopContext>(); // moramo i kontekst da ubacimo
             services.AddDbContext<KorisnikContext>();
+            services.AddHttpClient<BioskopService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,30 +3,42 @@
     ViewData["Title"] = "Detalji o filmu";
 }
 
-<div class="container prva-slika">
-    
+
+
+<div style="background-image: url('@Model.PutanjaBackPostera')" class="container prva-slika">
+
+
+
     <div class="zanr">
     </div>
     <div class="PosterFilma">
-        @*<img src="@Model.PutanjaPostera" class="movie-img" style="width:200px;">*@
+        <img src="@Model.PutanjaPostera" alt="" class="movie-img" style="width:200px;">
+
+
+
 
     </div>
     <div class="col-md-6 left-box">
 
+
+
     </div>
+
+
 
 </div>
 <div class="container movie-details">
 
 
-    <div class="dugmad">
+
+
+    <div class="dugmad" style="display:inline-block">
         <div class="col-md-6 left-box">
-
-
-
-            <a href="https://www.youtube.com/watch?v=8ndhidEmUbI&ab_channel=WarnerBros.Pictures"><i class="fa fa-play" aria-hidden="true"></i>   Gledaj trailer </a>
-            <a href="#" class=" kupovina"><i class="fa fa-ticket" aria-hidden="true"></i>   Kupi kartu </a>
-
+            <a href="@Model.YoutubeTrailer"><i class="fa fa-play" aria-hidden="true"></i>   Gledaj trailer </a>
+            <a href="#" class=" kupovina" style="text-align:center; width:150px"><i class="fa fa-ticket" aria-hidden="true"></i> Rezerviši kartu </a>
+            @if (ViewBag.Username == "admin") { 
+        <a href='@Url.Action("Delete", "Film", new { id=Model.FilmId})' class=" kupovina"> Obriši film</a>
+            }
         </div>
         <br>
         <hr>
@@ -34,11 +46,8 @@
         <div class="GodinaIzlaska"><i class="fa fa-calendar" aria-hidden="true"> </i> @Model.Godina.ToString() </div>
     </div>
 
-
-
-    <div class="opisfilma" style="text-align:right">
-        <h1>@Model.Naziv</h1>
-        <p>  Ovde treba da dodje neki opis filma</p>
-
+    <div class="opisfilma">
+        <h2>@Model.Naziv</h2>
+        <p> @Model.OpisFilma </p>
     </div>
 </div>

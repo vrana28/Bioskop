@@ -27,36 +27,71 @@
         //    { $zIndex: 1, width: 120, height: 150, top: 69, left: 500, $opacity: 0.2 }
 
         //];
-        var states = [];
+        //var states = [];
         //var a = { $zIndex: 4, width: 224, height: 288, top: 0, left: 263, $opacity: 1 };
         //var b = { $zIndex: 3, width: 224, height: 288, top: 0, left: 263, $opacity: 1 };
         //states.push(a);
         //states.push(b);
-        while (filmNum != 0) {
-            var a = { $zIndex: filmNum, width: 224, height: 288, top: 0, left: 263, $opacity: 1 };
-            states.push(a);
-            filmNum--;
-            if (filmNum == 0) break;
-            var b = { $zIndex: filmNum, width: 170, height: 218, top: 35, left: 470, $opacity: 0.7 };
-            states.push(b);
-            var b1 = { $zIndex: filmNum, width: 170, height: 218, top: 35, left: 110, $opacity: 0.7 };
-            states.push(b1);
-            filmNum--;
-            if (filmNum == 0) break;
-            var c = { $zIndex: filmNum, width: 130, height: 170, top: 59, left: 620, $opacity: 0.4 };
-            states.push(c);
-            var c1 = { $zIndex: filmNum, width: 130, height: 170, top: 59, left: 0, $opacity: 0.4 };
-            states.push(c1);
-            filmNum--;
-            if (filmNum == 0) break;
-            var d = { $zIndex: filmNum, width: 120, height: 150, top: 69, left: 500, $opacity: 0.2 };
-            states.push(d);
-            var d1 = { $zIndex: filmNum, width:120, height: 150, top: 69, left: 134, $opacity: 0.2 };
-            states.push(d1);
-            filmNum--;
+        //while (filmNum != 0) {
+        //    var a = { $zIndex: filmNum, width: 224, height: 288, top: 0, left: 263, $opacity: 1 };
+        //    states.push(a);
+        //    filmNum--;
+        //    if (filmNum == 0) break;
+        //    var b = { $zIndex: filmNum, width: 170, height: 218, top: 35, left: 470, $opacity: 0.7 };
+        //    states.push(b);
+        //    var b1 = { $zIndex: filmNum, width: 170, height: 218, top: 35, left: 110, $opacity: 0.7 };
+        //    states.push(b1);
+        //    filmNum--;
+        //    if (filmNum == 0) break;
+        //    var c = { $zIndex: filmNum, width: 130, height: 170, top: 59, left: 620, $opacity: 0.4 };
+        //    states.push(c);
+        //    var c1 = { $zIndex: filmNum, width: 130, height: 170, top: 59, left: 0, $opacity: 0.4 };
+        //    states.push(c1);
+        //    filmNum--;
+        //    if (filmNum == 0) break;
+        //    var d = { $zIndex: filmNum, width: 120, height: 150, top: 69, left: 500, $opacity: 0.2 };
+        //    states.push(d);
+        //    var d1 = { $zIndex: filmNum, width:120, height: 150, top: 69, left: 134, $opacity: 0.2 };
+        //    states.push(d1);
+        //    filmNum--;
+        //}
+        //states.push({ $zIndex: 4, width: 224, height: 288, top: 0, left: 263, $opacity: 1 });
+        //states.push({ $zIndex: 4, width: 224, height: 288, top: 0, left: 263, $opacity: 1 });
+
+        var states = [];
+
+
+
+
+
+        var x = Math.round(filmNum / 2);
+        var t = x - 1;
+        var p = 1;
+        var f = 1;
+
+
+
+        while (f != filmNum + 1) {
+            if (f == x) {
+                var a = { $zIndex: p, width: 224, height: 288, top: 0, left: 263, $opacity: 1 }
+                states.push(a);
+                p--;
+            }
+            else if (f < x) {
+                var a1 = { $zIndex: p, width: 224 - (x - p) * 104 / t, height: 288 - (x - p) * 150 / t, top: 0 + (x - p) * 69 / t, left: 263 - (x - p) * 200 / t, $opacity: 1 - (x - p) / x };
+                p++;
+                states.push(a1);
+
+            } else {
+                var a2 = { $zIndex: p, width: 224 - (x - p) * 104 / t, height: 288 - (x - p) * 150 / t, top: 0 + (x - p) * 69 / t, left: 263 + (x - p) * 250 / t, $opacity: 1 - (x - p) / x };
+                states.push(a2);
+                p--;
+            }
+
+
+
+            f++;
         }
-        //states.push({ $zIndex: 4, width: 224, height: 288, top: 0, left: 263, $opacity: 1 });
-        //states.push({ $zIndex: 4, width: 224, height: 288, top: 0, left: 263, $opacity: 1 });
 
         var $lis = $ele.find('li');
         var timer = null;

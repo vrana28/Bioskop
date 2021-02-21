@@ -6,10 +6,14 @@
 
 
 
+
+
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;
 }
+
+
 
 
 
@@ -21,11 +25,15 @@ a {
 
 
 
+
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
+
+
 
 
 
@@ -35,6 +43,8 @@ html {
     font-size: 14px;
 }
 
+
+
 @media (min-width: 768px) {
     html {
         font-size: 16px;
@@ -43,9 +53,13 @@ html {
 
 
 
+
+
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
+
+
 
 .border-bottom {
     border-bottom: 1px solid #e5e5e5;
@@ -53,9 +67,13 @@ html {
 
 
 
+
+
 .box-shadow {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+
 
 
 
@@ -66,12 +84,17 @@ button.accept-policy {
 
 
 
+
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
     position: relative;
     min-height: 100%;
+    overflow-y: scroll
 }
+
+
 
 
 
@@ -79,16 +102,18 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     content: " ";
-    position: fixed;
+    position: initial;
     top: 0;
     background-image: url("../img/background.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     overflow: hidden;
     width: 100vw;
-    height: 100vh;
+    height: auto;
     z-index: -1;
 }
+
+
 
 .footer {
     position: absolute;
@@ -104,6 +129,8 @@ body {
 
 
 
+
+
 #background-img {
     content: " ";
     position: fixed;
@@ -111,7 +138,7 @@ body {
     background-image: url("../img/background.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
-    overflow: hidden;
+    overflow: scroll;
     width: 100vw;
     height: 100vh;
     z-index: -1;
@@ -120,11 +147,17 @@ body {
 
 
 
+
+
 .row {
     margin: 0;
 }
 
+
+
 /*sedista css*/
+
+
 
 #holder {
     height: 400px;
@@ -137,23 +170,33 @@ body {
     padding: 40px;
 }
 
+
+
 #place {
     position: relative;
     margin: 7px;
 }
 
+
+
     #place a {
         font-size: 0.6em;
     }
+
+
 
     #place li {
         list-style: none outside none;
         position: absolute;
     }
 
+
+
         #place li:hover {
             background-color: yellow;
         }
+
+
 
     #place .seat {
         background: url("../img/available_seat_img.gif") no-repeat scroll 0 0 transparent;
@@ -162,17 +205,25 @@ body {
         display: block;
     }
 
+
+
     #place .selectedSeat {
         background-image: url("../img/booked_seat_img.gif");
     }
+
+
 
     #place .selectingSeat {
         background-image: url("../img/selected_seat_img.gif");
     }
 
+
+
     #place .row-3, #place .row-4 {
         margin-top: 10px;
     }
+
+
 
 #seatDescription li {
     vertical-align: middle;
@@ -182,14 +233,20 @@ body {
     float: left;
 }
 
+
+
 #slobodno_sediste {
     background: url('../img/available_seat_img.gif') no-repeat scroll 0 0 transparent;
 }
+
+
 
 #zauzeto_sediste {
     background: url('../img/booked_seat_img.gif') no-repeat scroll 0 0 transparent;
 }
 /*Golub katalog*/
+
+
 
 
 
@@ -202,12 +259,16 @@ body {
 
 
 
+
+
 .hi-slide {
     position: relative;
     width: 754px;
     height: 293px;
     margin: 115px auto 0;
 }
+
+
 
 
 
@@ -231,11 +292,15 @@ body {
 
 
 
+
+
         .hi-slide .hi-next:hover,
         .hi-slide .hi-prev:hover {
             opacity: 1;
             background-color: white;
         }
+
+
 
 
 
@@ -245,9 +310,13 @@ body {
 
 
 
+
+
         .hi-slide .hi-prev::before {
             content: '<';
         }
+
+
 
 
 
@@ -257,9 +326,13 @@ body {
 
 
 
+
+
         .hi-slide .hi-next::before {
             content: '>';
         }
+
+
 
 
 
@@ -271,6 +344,8 @@ body {
         margin: 0;
         padding: 0;
     }
+
+
 
 
 
@@ -291,11 +366,15 @@ body {
 
 
 
-      .hi-slide > ul > li > a >img {
+
+
+            .hi-slide > ul > li > a > img {
                 width: 100%;
                 height: 100%;
                 background-position: center;
-        }
+            }
+
+
 
 
 
@@ -311,9 +390,13 @@ body {
     display: inline-block;
 }
 
+
+
 .left-box {
     color: #fff;
 }
+
+
 
     .left-box a {
         text-decoration: none !important;
@@ -327,6 +410,8 @@ body {
         margin-right: 10px;
     }
 
+
+
 .movie-img {
     height: 300px;
     box-shadow: -4px 4px 5px 0 #000;
@@ -338,6 +423,8 @@ body {
 
 
 
+
+
 .PosterFilma {
     width: 300px;
     position: absolute;
@@ -346,13 +433,18 @@ body {
 
 
 
+
+
 .prva-slika {
-    background-image: url("../img/upload-img/trV.jpg");
+    background-attachment: fixed;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     overflow: hidden;
     width: 100vw;
     height: 50vh;
 }
+
+
 
 .zanr {
     display: inline-block;
@@ -361,24 +453,35 @@ body {
     color: white;
 }
 
+
+
 .fa {
     margin: 0 5px;
 }
 
+
+
 .opisfilma {
     color: #107afd;
-    width: 400px;
+    width: 65%;
+    max-height:220px;
     height: 300px;
-    position: center;
     right: 40vw;
     display: inline-block;
+    text-align:left;
     bottom: 20vh;
+    vertical-align:top;
+    margin-top:20px;
 }
+
+
 
 .kupovina {
     background-color: black !important;
     color: white !important;
 }
+
+
 
 .duzinaTrajanja {
     background-color: #03254c !important;
@@ -387,6 +490,8 @@ body {
     color: white;
 }
 
+
+
 .GodinaIzlaska {
     background-color: #03254c !important;
     display: inline-block;
@@ -394,9 +499,26 @@ body {
     color: white;
 }
 
+
+
 .dugmad {
     margin-top: 15px;
-    width: 600px;
+    width: 350px;
     height: 300px;
     display: inline-block;
+}
+
+/*dodato da 2 diva budu jedan pored drugog*/
+
+.div1 {
+    display: inline-block;
+    width:40%;
+}
+
+.div2 {
+    display: inline-block;
+    height: 200px;
+    width: 40%;
+    margin-left:100px;
+    vertical-align:top;
 }
