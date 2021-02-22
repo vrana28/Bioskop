@@ -10,6 +10,7 @@ namespace Bioskop.Podaci.UnitOfWork
         public IRepositorySala Sala{ get; set; }
         public IRepositoryKarta Karta { get; set; }
         public IRepositoryProjekcija Projekcija { get; set; }
+        public IRepositorySediste Sediste { get; set; }
         void Commit();
     }
 }

@@ -1,10 +1,16 @@
 ﻿@model Bioskop.WebApp.Models.CreateSalaViewModel
 
+
+
 @{
     ViewData["Title"] = "Create";
 }
 
+
+
 <h1>Create</h1>
+
+
 
 <h4>Sala</h4>
 <hr />
@@ -13,23 +19,33 @@
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+
+
             <div class="form-group">
                 <label asp-for="Sala.NazivSale" class="control-label"></label>
                 <input asp-for="Sala.NazivSale" class="form-control" />
                 <span asp-validation-for="Sala.NazivSale" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Sala.Slobodna" class="control-label"></label><br />
-                Da: @Html.RadioButtonFor(m => m.Sala.Slobodna, true)<br />
-                Ne: @Html.RadioButtonFor(m => m.Sala.Slobodna, false)<br />
-                <span asp-validation-for="Sala.NazivSale" class="text-danger"></span>
+                <label asp-for="Sala.BrojKolona" class="control-label"></label>
+                <input asp-for="Sala.BrojKolona" class="form-control" />
+                <span asp-validation-for="Sala.BrojKolona" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="Sala.BrojRedova" class="control-label"></label>
+                <input asp-for="Sala.BrojRedova" class="form-control" />
+                <span asp-validation-for="Sala.BrojRedova" class="text-danger"></span>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
             </div>
         </form>
     </div>
 </div>
+
+
 
 
 

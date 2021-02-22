@@ -1,0 +1,56 @@
+﻿@model Bioskop.WebApp.Models.GoogleCalendarViewModel
+
+@{
+    ViewData["Title"] = "Unos Projekcije";
+}
+
+
+
+<hr />
+<h3>Vreme projekcija</h3>
+@if (ViewBag.EventList != null)
+{
+
+    <table class="table table-hover">
+        <tr>
+            <th>Vreme pocetka projekcije</th>
+            <th>Vreme kraja projekcije</th>
+            <th>Cena projekcije</th>
+        </tr>
+        @foreach (var item in ViewBag.EventList as List<Bioskop.WebApp.Models.GoogleCalendarViewModel>)
+        {
+            <tr>
+                <td>@item.Projekcija.VremeProjekcije</td>
+                <td>@item.Projekcija.VremeKrajaProjekcije</td>
+                <td>@item.Projekcija.Cena</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="alert alert-danger">No upcomming events</div>
+}
+
+<hr />
+<div class="row">
+    <div class="w-100 p-3">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Projekcija.FilmId" class="control-label">Dostupni filmovi:</label>
+                <select class="form-control" asp-for="Projekcija.FilmId" asp-items="Model.Filmovi"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Projekcija.SalaId" class="control-label">Dostupne sale:</label>
+                <select class="form-control" asp-for="Projekcija.SalaId" asp-items="Model.Sale"></select>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

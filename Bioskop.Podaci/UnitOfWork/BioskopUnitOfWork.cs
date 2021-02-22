@@ -17,10 +17,12 @@ namespace Bioskop.Podaci.UnitOfWork
             Sala = new RepositorySala(this.context);
             Karta = new RepositoryKarta(this.context);
             Projekcija = new RepositoryProjekcija(this.context);
+            Sediste = new RepositorySediste(this.context);
         }
         public IRepositoryFilm Film { get; set; }
         public IRepositorySala Sala { get; set; }
         public IRepositoryKarta Karta { get; set; }
+        public IRepositorySediste Sediste { get; set; }
         public IRepositoryProjekcija Projekcija { get; set; }
         public void Commit()
         {

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.50.0.2237" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
@@ -12,6 +13,12 @@
   <ItemGroup>
     <ProjectReference Include="..\Bioskop.Domen\Bioskop.Domen.csproj" />
     <ProjectReference Include="..\Bioskop.Podaci\Bioskop.Podaci.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Credentials.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 

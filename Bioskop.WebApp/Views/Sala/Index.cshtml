@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Bioskop.Domen.Sala>
+﻿@model List<Sala>
+
+
 
 @{
     ViewData["Title"] = "Index";
@@ -6,42 +8,28 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
+
             <th>
-                @Html.DisplayNameFor(model => model.SalaId)
+                Naziv sale
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NazivSale)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Slobodna)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SalaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NazivSale)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Slobodna)
-            </td>
-            <td>
-                @Html.ActionLink("Promeni", "Edit", new { id=item.SalaId }) |
-                @Html.ActionLink("Detalji", "Details", new { id=item.SalaId}) |
-                @Html.ActionLink("Obrisi", "Delete", new { id=item.SalaId })
-            </td>
-        </tr>
-}
+        @foreach (Sala s in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => s.NazivSale)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Obrisi", "Delete", new { id = s.SalaId })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

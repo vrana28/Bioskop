@@ -131,8 +131,7 @@ namespace Bioskop.WebApp.Controllers
             {
                 Num = request.Num,
                 SalaId = request.SalaId,
-                NazivSale = s.NazivSale,
-                Slobodna = s.Slobodna
+                NazivSale = s.NazivSale
             };
             return PartialView("ProjekcijaPartial",model);
         }
