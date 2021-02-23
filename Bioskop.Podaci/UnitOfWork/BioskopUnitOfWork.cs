@@ -18,6 +18,7 @@ namespace Bioskop.Podaci.UnitOfWork
             Karta = new RepositoryKarta(this.context);
             Projekcija = new RepositoryProjekcija(this.context);
             Sediste = new RepositorySediste(this.context);
+            
         }
         public IRepositoryFilm Film { get; set; }
         public IRepositorySala Sala { get; set; }

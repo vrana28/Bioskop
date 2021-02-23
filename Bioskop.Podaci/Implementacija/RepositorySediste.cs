@@ -1,6 +1,7 @@
 ﻿using Bioskop.Domen;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Bioskop.Podaci.Implementacija
@@ -44,6 +45,11 @@ namespace Bioskop.Podaci.Implementacija
         public int VratiBrojKolona(Sala sala)
         {
             return sala.SedistaUSali.Count;
+        }
+
+        public List<Sediste> VratiSvePoId(int salaId)
+        {
+            return context.Sediste.Where(s => s.SalaId == salaId).ToList();
         }
     }
 }

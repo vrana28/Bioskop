@@ -139,10 +139,19 @@ namespace Bioskop.WebApp.Controllers
         [NotLoggedIn]
         public ActionResult Delete([FromRoute] int id)
         {
-
             Film model = unitOfWork.Film.NadjiPoId(id);
             ViewBag.IsLoggedIn = true;
             ViewBag.Username = HttpContext.Session.GetString("username");
+            List<Projekcija> projekcije = new List<Projekcija>();
+            projekcije = unitOfWork.Projekcija.VratiSve();
+            foreach (Projekcija p in projekcije)
+            {
+                if (p.FilmId == id)
+                {
+                    unitOfWork.Projekcija.Delete(p);
+                }
+            }
+
             unitOfWork.Film.Delete(model);
             unitOfWork.Commit();
             return RedirectToAction("Index");

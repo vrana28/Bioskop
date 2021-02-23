@@ -8,5 +8,6 @@ namespace Bioskop.Podaci
     public interface IRepositorySediste:IRepository<Sediste>
     {
         public int VratiBrojKolona(Sala s);
+        List<Sediste> VratiSvePoId(int salaId);
     }
 }

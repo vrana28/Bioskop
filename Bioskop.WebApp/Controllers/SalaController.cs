@@ -111,6 +111,16 @@ namespace Bioskop.WebApp.Controllers
             Sala model = unitOfWork.Sala.NadjiPoId(id);
             ViewBag.IsLoggedIn = true;
             ViewBag.Username = HttpContext.Session.GetString("username");
+            List<Projekcija> projekcije = new List<Projekcija>();
+            projekcije = unitOfWork.Projekcija.VratiSve();
+            foreach (Projekcija p in projekcije)
+            {
+                if (p.SalaId == id)
+                {
+                    unitOfWork.Projekcija.Delete(p);
+                }
+            }
+
             unitOfWork.Sala.Delete(model);
             unitOfWork.Commit();
             return RedirectToAction("Index");

@@ -43,5 +43,10 @@ namespace Bioskop.Podaci.Implementacija
         {
             return context.Projekcija.ToList();
         }
+
+        public List<Projekcija> VratiSveSaId(int id)
+        {
+            return context.Projekcija.Where(p => p.FilmId == id).ToList();
+        }
     }
 }

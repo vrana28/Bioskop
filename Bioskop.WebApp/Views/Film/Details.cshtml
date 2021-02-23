@@ -27,6 +27,7 @@
 
 
 </div>
+
 <div class="container movie-details">
 
 
@@ -35,7 +36,7 @@
     <div class="dugmad" style="display:inline-block">
         <div class="col-md-6 left-box">
             <a href="@Model.YoutubeTrailer"><i class="fa fa-play" aria-hidden="true"></i>   Gledaj trailer </a>
-            <a href="#" class=" kupovina" style="text-align:center; width:150px"><i class="fa fa-ticket" aria-hidden="true"></i> Rezerviši kartu </a>
+            <a  asp-controller="Projekcija" asp-action="Details" asp-route-id="@Model.FilmId" class=" kupovina" style="text-align:center; width:150px">Rezerviši kartu </a>
             @if (ViewBag.Username == "admin") { 
         <a href='@Url.Action("Delete", "Film", new { id=Model.FilmId})' class=" kupovina"> Obriši film</a>
             }

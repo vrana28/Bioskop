@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Bioskop.Podaci
 {
-    public interface IRepositoryProjekcija:IRepository<Projekcija>
+    public interface IRepositoryProjekcija : IRepository<Projekcija>
     {
+        List<Projekcija> VratiSveSaId(int id);
     }
 }

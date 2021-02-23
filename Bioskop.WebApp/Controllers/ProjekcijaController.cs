@@ -27,7 +27,7 @@ namespace Bioskop.WebApp.Controllers
         static string[] Scopes = { CalendarService.Scope.CalendarReadonly };
         static string ApplicationName = "Google Calendar API .NET Quickstart";
         private readonly IUnitOfWork unitOfWork;
-
+        
         public ProjekcijaController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
@@ -38,7 +38,13 @@ namespace Bioskop.WebApp.Controllers
         {
             ViewBag.IsLoggedIn = true;
             ViewBag.Username = HttpContext.Session.GetString("username");
-            return View();
+            List<Projekcija> model = unitOfWork.Projekcija.VratiSve();
+            foreach (Projekcija p in model) {
+                p.Film = unitOfWork.Film.NadjiPoId(p.FilmId);
+                p.Sala = unitOfWork.Sala.NadjiPoId(p.SalaId);
+            };
+            model = model.OrderBy(x => x.VremeProjekcije).ToList();
+            return View(model);
         }
 
         
@@ -100,7 +106,15 @@ namespace Bioskop.WebApp.Controllers
         // GET: Projekcija/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ViewBag.IsLoggedIn = true;
+            ViewBag.Username = HttpContext.Session.GetString("username");
+            List<Projekcija> model = unitOfWork.Projekcija.VratiSveSaId(id);
+            foreach (Projekcija p in model)
+            {
+                p.Film = unitOfWork.Film.NadjiPoId(p.FilmId);
+                p.Sala = unitOfWork.Sala.NadjiPoId(p.SalaId);
+            };
+            return View("Index",model.OrderBy(x=>x.VremeProjekcije).ToList());
         }
 
         // GET: Projekcija/Create
@@ -131,19 +145,28 @@ namespace Bioskop.WebApp.Controllers
             try
             {
                 CalendarDogadjaji();
+                List<Projekcija> l = new List<Projekcija>();
+                l = unitOfWork.Projekcija.VratiSve();
                 List<Projekcija> listProjekcija = new List<Projekcija>();
                 if (GoogleEvents.Count == 0) throw new Exception();
+
                 foreach (var item in GoogleEvents) {
-                    Projekcija p = new Projekcija
+                   
+                        Projekcija p = new Projekcija
+                        {
+
+                            VremeKrajaProjekcije = item.Projekcija.VremeKrajaProjekcije,
+                            VremeProjekcije = item.Projekcija.VremeProjekcije,
+                            Cena = item.Projekcija.Cena,
+                            SalaId = model.Projekcija.SalaId,
+                            FilmId = model.Projekcija.FilmId
+                        };
+                  
+                    if (l.All(x=>(p.VremeProjekcije <= x.VremeProjekcije && p.VremeProjekcije >= x.VremeKrajaProjekcije && x.SalaId==p.SalaId) || x.SalaId!=p.SalaId ) ||
+                        l.All(x1=>(p.VremeProjekcije >= x1.VremeProjekcije && p.VremeProjekcije >= x1.VremeKrajaProjekcije && x1.SalaId == p.SalaId) || x1.SalaId != p.SalaId) )  
                     {
-                        
-                        VremeKrajaProjekcije = item.Projekcija.VremeKrajaProjekcije,
-                        VremeProjekcije = item.Projekcija.VremeProjekcije,
-                        Cena = item.Projekcija.Cena,
-                        SalaId = model.Projekcija.SalaId,
-                        FilmId = model.Projekcija.FilmId
-                    };
-                    listProjekcija.Add(p);
+                        listProjekcija.Add(p);
+                    }
                 }
                 foreach (Projekcija pr in listProjekcija) {
                     unitOfWork.Projekcija.Dodaj(pr);
@@ -153,7 +176,8 @@ namespace Bioskop.WebApp.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View("Create");
             }
         }
 
@@ -183,7 +207,12 @@ namespace Bioskop.WebApp.Controllers
         // GET: Projekcija/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            ViewBag.IsLoggedIn = true;
+            ViewBag.Username = HttpContext.Session.GetString("username");
+            Projekcija p = unitOfWork.Projekcija.NadjiPoId(id);
+            unitOfWork.Projekcija.Delete(p);
+            unitOfWork.Commit();
+            return RedirectToAction("Index");
         }
 
         // POST: Projekcija/Delete/5
