@@ -51,5 +51,10 @@ namespace Bioskop.Podaci.Implementacija
         {
             return context.Sediste.Where(s => s.SalaId == salaId).ToList();
         }
+
+        public int BrojSlobodnihSedista(int salaId)
+        {
+            return context.Sediste.Where(s => s.SalaId == salaId && s.SlobodnoSediste==true).Count();
+        }
     }
 }

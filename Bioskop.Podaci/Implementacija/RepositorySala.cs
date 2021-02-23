@@ -30,6 +30,21 @@ namespace Bioskop.Podaci.Implementacija
             context.Sala.Add(s);
         }
 
+        public void DodajSvaSedista(Sala sala)
+        {
+            int bk = sala.BrojKolona + 1;
+            int br = sala.BrojRedova + 1;
+            for (int i = 1; i < bk; i++)
+            {
+                for (int j = 1; j < br; j++)
+                {
+                    char r = (char)(j + 'a' - 1);
+                    context.Sediste.Add(new Sediste { Kolona = i, Red = r, Sala = sala, SalaId = sala.SalaId });
+                }
+
+            }
+        }
+
         public Sala NadjiPoId(int id)
         {
             return context.Sala.Find(id);

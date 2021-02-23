@@ -7,6 +7,6 @@ namespace Bioskop.Podaci
 {
     public interface IRepositorySala : IRepository<Sala>
     {
-       
+        void DodajSvaSedista(Sala sala);
     }
 }

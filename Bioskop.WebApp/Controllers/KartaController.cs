@@ -6,6 +6,7 @@ using Bioskop.Domen;
 using Bioskop.Podaci.UnitOfWork;
 using Bioskop.Podaci.UnitOfWork.Korisnici;
 using Bioskop.WebApp.Filters;
+using Bioskop.WebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -17,6 +18,7 @@ namespace Bioskop.WebApp.Controllers
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IKorisniciUnitOfWork unitOfWorkKorisnik;
+        public Karta Karta { get; set; }
         public KartaController(IUnitOfWork unitOfWork, IKorisniciUnitOfWork unitOfWorkKorisnik)
         {
             this.unitOfWork = unitOfWork;
@@ -52,18 +54,33 @@ namespace Bioskop.WebApp.Controllers
                 Projekcija = p,
                 Korisnik = unitOfWorkKorisnik.Korisnici.NadjiPoId((int)HttpContext.Session.GetInt32("userid")),
             };
-
-            return View(k);
+            ViewBag.SlobodnaSedista = unitOfWork.Sediste.BrojSlobodnihSedista(s.SalaId);
+            CreateKartaViewModel model = new CreateKartaViewModel
+            {
+                Karta = k,
+                KorisnikId = k.Korisnik.KorisnikId,
+                ProjekcijaId = k.Projekcija.ProjekcijaId,
+                BrojKarti=0
+            };
+            return View(model);
         }
 
         // POST: Karta/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CreateKartaViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+                Projekcija p = unitOfWork.Projekcija.NadjiPoId(model.ProjekcijaId);
+                Korisnik k = unitOfWorkKorisnik.Korisnici.NadjiPoId(model.KorisnikId);
+                Karta karta = new Karta { 
+                    KorisnikId = k.KorisnikId,
+                    ProjekcijaId = p.ProjekcijaId,
+                    
+                };
+
+                
 
                 return RedirectToAction(nameof(Index));
             }

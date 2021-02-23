@@ -57,18 +57,10 @@ namespace Bioskop.WebApp.Controllers
         {
             try
             {
-                unitOfWork.Sala.Dodaj(model.Sala);
-                int bk = model.Sala.BrojKolona + 1;
-                int br = model.Sala.BrojRedova + 1;
-                for (int i = 1; i < bk; i++)
-                {
-                    for (int j = 1; j < br; j++)
-                    {
-                        char r = (char)(j + 'a' - 1);
-                        unitOfWork.Sediste.Dodaj(new Sediste { Kolona = i, Red = r, Sala = model.Sala, SalaId = model.Sala.SalaId});
-                    }
 
-                }
+                unitOfWork.Sala.Dodaj(model.Sala);
+                unitOfWork.Sala.DodajSvaSedista(model.Sala);
+
                 unitOfWork.Commit();
                 return RedirectToAction("Index", "Sala");
             }

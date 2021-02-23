@@ -1,34 +1,34 @@
-﻿@model Karta
+﻿@model Bioskop.WebApp.Models.CreateKartaViewModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Kreiranje karte";
 }
 
 <h1>Rezervacija karte</h1>
 
-<div style="background-image: url('@Model.Projekcija.Film.PutanjaBackPostera')" class="container prva-slika">
+<div style="background-image: url('@Model.Karta.Projekcija.Film.PutanjaBackPostera')" class="container prva-slika">
     <div class="zanr">
     </div>
     <div class="PosterFilma">
-        <img src="@Model.Projekcija.Film.PutanjaPostera" alt="" class="movie-img" style="width:200px;">
+        <img src="@Model.Karta.Projekcija.Film.PutanjaPostera" alt="" class="movie-img" style="width:200px;">
     </div>
     <div class="col-md-6 left-box">
     </div>
 </div>
 <div class="container movie-details">
     <div class="opisfilma">
-        <h2>@Model.Projekcija.Film.Naziv</h2>
-        <p> @Model.Projekcija.Film.OpisFilma</p>
+        <h2>@Model.Karta.Projekcija.Film.Naziv</h2>
+        <p> @Model.Karta.Projekcija.Film.OpisFilma</p>
     </div>
 
     <div class="dugmad" style="display:inline-block">
         <div class="col-md-6 left-box div1">
-            <p> @Model.Projekcija.VremeProjekcije</p>
-            <p> @Model.Projekcija.VremeKrajaProjekcije</p>
-            <p>Sala: @Model.Projekcija.Sala.NazivSale</p>
+            <p> @Model.Karta.Projekcija.VremeProjekcije</p>
+            <p> @Model.Karta.Projekcija.VremeKrajaProjekcije</p>
+            <p>Sala: @Model.Karta.Projekcija.Sala.NazivSale</p>
         </div>
         <div class="div2">
-            <div class="duzinaTrajanja"><i class="far fa-clock" aria-hidden="true"></i> @Model.Projekcija.Film.Trajanje.ToString()min</div>
-            <div class="GodinaIzlaska"><i class="fa fa-calendar" aria-hidden="true"> </i> @Model.Projekcija.Film.Godina.ToString() </div>
+            <div class="duzinaTrajanja"><i class="far fa-clock" aria-hidden="true"></i> @Model.Karta.Projekcija.Film.Trajanje.ToString()min</div>
+            <div class="GodinaIzlaska"><i class="fa fa-calendar" aria-hidden="true"> </i> @Model.Karta.Projekcija.Film.Godina.ToString() </div>
         </div>
     </div>
 </div>
@@ -38,28 +38,45 @@
     <div class="w-100 p-3">
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div style="display:inline-block; margin-left:800px;font-size:150%">
+                <label class="control-label" style="display:inline-block; color:red">Mesta: @ViewBag.SlobodnaSedista </label>
+            </div>
+            <br />
             <div class="form-group">
-                <label class="control-label">Korisnik: @Model.Korisnik.Ime @Model.Korisnik.Prezime</label>
-
+                <label class="control-label">Korisnik: @Model.Karta.Korisnik.Ime @Model.Karta.Korisnik.Prezime</label>
+                <input asp-for="Karta.Korisnik.KorisnikId" type="hidden" />
+                <input asp-for="KorisnikId" type="hidden" />
             </div>
             <div class="form-group">
-                <label class="control-label">Sala: @Model.Projekcija.Sala.NazivSale </label>
+                <label class="control-label">Film: @Model.Karta.Projekcija.Film.Naziv </label><br />
+                @*<input asp-for="Karta.Projekcija.Film.FilmId" type="hidden" />*@
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Broj Karti </label>
-                <input type="number" />
+                <label class="control-label">Sala: @Model.Karta.Projekcija.Sala.NazivSale </label>
+                @*<input asp-for="Karta.Projekcija.Sala.SalaId" type="hidden" />*@
             </div>
-            
-
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label class="control-label">Vreme projekcije: @Model.Karta.Projekcija.VremeProjekcije.TimeOfDay do @Model.Karta.Projekcija.VremeKrajaProjekcije.TimeOfDay </label>
+                <input asp-for="Karta.Projekcija.ProjekcijaId" type="hidden" />
+                <input asp-for="ProjekcijaId" type="hidden" />
             </div>
+            <div class="form-group">
+                <label class="control-label">Broj karti (max 4): </label><br />
+                <input asp-for="BrojKarti" type="number" value="1" class="mb-4" />
+                <span class="text-danger"></span>
+            </div>
+            @if (ViewBag.SlobodnaSedista != 0)
+            {
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>}
         </form>
     </div>
 </div>
 
 
-<h3> Izaberite ponudjena sedista:</h3>
+@*<h3> Izaberite ponudjena sedista:</h3>
     <div id="holder">
         <ul id="place">
         </ul>
@@ -74,13 +91,13 @@
     <div style="clear:both;width:100%">
         <input type="button" id="btnShowNew" value="Show Selected Seats" />
         <input type="button" id="btnShow" value="Show All" />
-    </div>
+    </div>*@
 
 @section Scripts {
     <script>
         var settings = {
-            rows: @Model.Projekcija.Sala.BrojRedova,
-            cols: @Model.Projekcija.Sala.BrojKolona,
+            rows: @Model.Karta.Projekcija.Sala.BrojRedova,
+            cols: @Model.Karta.Projekcija.Sala.BrojKolona,
             rowCssPrefix: 'row-',
             colCssPrefix: 'col-',
             seatWidth: 40,
