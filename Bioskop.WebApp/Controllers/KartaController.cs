@@ -54,7 +54,7 @@ namespace Bioskop.WebApp.Controllers
                 Projekcija = p,
                 Korisnik = unitOfWorkKorisnik.Korisnici.NadjiPoId((int)HttpContext.Session.GetInt32("userid")),
             };
-            ViewBag.SlobodnaSedista = unitOfWork.Sediste.BrojSlobodnihSedista(s.SalaId);
+            ViewBag.SlobodnaSedista = unitOfWork.Sediste.BrojSlobodnihSedista(s.SalaId,p.ProjekcijaId);
             CreateKartaViewModel model = new CreateKartaViewModel
             {
                 Karta = k,
@@ -72,21 +72,33 @@ namespace Bioskop.WebApp.Controllers
         {
             try
             {
+                if (model.BrojKarti > 4) throw new Exception("Ne mozete vise od 4 karte");
                 Projekcija p = unitOfWork.Projekcija.NadjiPoId(model.ProjekcijaId);
                 Korisnik k = unitOfWorkKorisnik.Korisnici.NadjiPoId(model.KorisnikId);
-                Karta karta = new Karta { 
-                    KorisnikId = k.KorisnikId,
-                    ProjekcijaId = p.ProjekcijaId,
-                    
-                };
 
-                
+                List<string> karte = new List<string>();
+                List<Sediste> listaSedista = unitOfWork.Sediste.VratiSvaSlobodnaMesta(p.ProjekcijaId, p.SalaId);
+                if (model.BrojKarti > listaSedista.Count) throw new Exception();
+                listaSedista = listaSedista.Take(model.BrojKarti).ToList();
 
-                return RedirectToAction(nameof(Index));
+                foreach (Sediste s in listaSedista)
+                {
+                    Karta karta = new Karta
+                    {
+                        KorisnikId = k.KorisnikId,
+                        ProjekcijaId = p.ProjekcijaId,
+                        RedKolona = "Red:"+s.Red+" "+"Kolona:"+s.Kolona.ToString()
+                    };
+                    unitOfWork.Karta.Dodaj(karta);
+                    unitOfWork.Sediste.Update(s);
+                }
+                unitOfWork.Commit();
+                return RedirectToAction("Index","Film");
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                ModelState.AddModelError(string.Empty, "Greska");
+                return RedirectToAction("Create");
             }
         }
 

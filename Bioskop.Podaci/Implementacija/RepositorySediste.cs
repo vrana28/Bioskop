@@ -36,7 +36,16 @@ namespace Bioskop.Podaci.Implementacija
 
         public void Update(Sediste s)
         {
-            throw new NotImplementedException();
+            Sediste nova = new Sediste
+            {
+                Red = s.Red,
+                Kolona = s.Kolona,
+                ProjekcijaId = s.ProjekcijaId,
+                SalaId = s.SalaId,
+                SlobodnoSediste=false,
+            };
+            context.Sediste.Remove(s);
+            context.Sediste.Add(nova);
         }
         public List<Sediste> VratiSve()
         {
@@ -52,9 +61,9 @@ namespace Bioskop.Podaci.Implementacija
             return context.Sediste.Where(s => s.SalaId == salaId).ToList();
         }
 
-        public int BrojSlobodnihSedista(int salaId)
+        public int BrojSlobodnihSedista(int salaId, int projekcijaId)
         {
-            return context.Sediste.Where(s => s.SalaId == salaId && s.SlobodnoSediste==true).Count();
+            return context.Sediste.Where(s => s.SalaId == salaId && s.ProjekcijaId==projekcijaId && s.SlobodnoSediste==true).Count();
         }
 
         public void DodajSedistaZaProjekciju(List<Projekcija> listProjekcija)
@@ -75,6 +84,11 @@ namespace Bioskop.Podaci.Implementacija
 
                 } 
             }
+        }
+
+        public List<Sediste> VratiSvaSlobodnaMesta(int projekcijaId, int salaId)
+        {
+            return context.Sediste.Where(s => s.ProjekcijaId == projekcijaId && s.SalaId == salaId && s.SlobodnoSediste == true).ToList();
         }
     }
 }
