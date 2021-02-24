@@ -56,5 +56,25 @@ namespace Bioskop.Podaci.Implementacija
         {
             return context.Sediste.Where(s => s.SalaId == salaId && s.SlobodnoSediste==true).Count();
         }
+
+        public void DodajSedistaZaProjekciju(List<Projekcija> listProjekcija)
+        {
+           
+            foreach (Projekcija p in listProjekcija)
+            {
+                Sala s = context.Sala.Find(p.SalaId);
+                int bk = s.BrojKolona + 1;
+                int br = s.BrojRedova + 1;
+                for (int i = 1; i < bk; i++)
+                {
+                    for (int j = 1; j < br; j++)
+                    {
+                        char r = (char)(j + 'a' - 1);
+                        context.Sediste.Add(new Sediste { SlobodnoSediste=true,Kolona = i, Red = r, Sala = s,ProjekcijaId=p.ProjekcijaId, SalaId = p.SalaId });
+                    }
+
+                } 
+            }
+        }
     }
 }

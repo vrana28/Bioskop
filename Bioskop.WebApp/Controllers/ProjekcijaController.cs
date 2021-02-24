@@ -161,16 +161,21 @@ namespace Bioskop.WebApp.Controllers
                             SalaId = model.Projekcija.SalaId,
                             FilmId = model.Projekcija.FilmId
                         };
-                  
-                    if (l.All(x=>(p.VremeProjekcije <= x.VremeProjekcije && p.VremeProjekcije >= x.VremeKrajaProjekcije && x.SalaId==p.SalaId) || x.SalaId!=p.SalaId ) ||
-                        l.All(x1=>(p.VremeProjekcije >= x1.VremeProjekcije && p.VremeProjekcije >= x1.VremeKrajaProjekcije && x1.SalaId == p.SalaId) || x1.SalaId != p.SalaId) )  
-                    {
+
+                   /* if (l.All(x => (p.VremeProjekcije <= x.VremeProjekcije && p.VremeProjekcije >= x.VremeKrajaProjekcije && x.SalaId == p.SalaId) || x.SalaId != p.SalaId) ||
+                    l.All(x1 => (p.VremeProjekcije >= x1.VremeProjekcije && p.VremeProjekcije >= x1.VremeKrajaProjekcije && x1.SalaId == p.SalaId) || x1.SalaId != p.SalaId) || l.Count == 0)
+                    {*/
                         listProjekcija.Add(p);
-                    }
+                    /*}
+                    else
+                    {
+                        Console.WriteLine();
+                    }*/
                 }
-                foreach (Projekcija pr in listProjekcija) {
-                    unitOfWork.Projekcija.Dodaj(pr);
-                }
+                
+                unitOfWork.Projekcija.DodajProjekcije(listProjekcija);
+                unitOfWork.Commit();
+                unitOfWork.Sediste.DodajSedistaZaProjekciju(listProjekcija);
                 unitOfWork.Commit();
                 return RedirectToAction(nameof(Index));
             }

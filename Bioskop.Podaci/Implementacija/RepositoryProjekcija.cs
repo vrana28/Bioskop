@@ -21,12 +21,29 @@ namespace Bioskop.Podaci.Implementacija
 
         public void Delete(Projekcija s)
         {
+            List<Sediste> sedista = context.Sediste.Where(x=>x.ProjekcijaId==s.ProjekcijaId ).ToList();
+            if (sedista != null)
+            {
+                foreach (Sediste sed in sedista)
+                {
+                    context.Sediste.Remove(sed);
+                }
+            }
+
             context.Projekcija.Remove(s);
         }
 
         public void Dodaj(Projekcija s)
         {
             context.Projekcija.Add(s);
+        }
+
+        public void DodajProjekcije(List<Projekcija> listProjekcija)
+        {
+            foreach (Projekcija pr in listProjekcija)
+            {
+                context.Projekcija.Add(pr);
+            }
         }
 
         public Projekcija NadjiPoId(int id)

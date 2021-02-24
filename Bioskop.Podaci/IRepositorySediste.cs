@@ -10,5 +10,6 @@ namespace Bioskop.Podaci
         public int VratiBrojKolona(Sala s);
         List<Sediste> VratiSvePoId(int salaId);
         int BrojSlobodnihSedista(int salaId);
+        void DodajSedistaZaProjekciju(List<Projekcija> listProjekcija);
     }
 }
