@@ -32,7 +32,28 @@ namespace Bioskop.Podaci.Implementacija
 
             context.Projekcija.Remove(s);
         }
+         public void izbrisiSvePFilm(int id, List<Projekcija> projekcije)
+        {
+        foreach (Projekcija p in projekcije)
+        {
+            if (p.FilmId == id)
+            {
+                context.Projekcija.Remove(p);
+            }
+        }
+    }
+        public void izbrisiSvePSala(int id, List<Projekcija> projekcije)
+        {
+            if (projekcije.Count == 0) return;
+            foreach (Projekcija p in projekcije)
+            {
+                if (p.SalaId == id)
+                {
+                    Delete(p);
+                }
+            }
 
+        }
         public void Dodaj(Projekcija s)
         {
             context.Projekcija.Add(s);
@@ -42,7 +63,12 @@ namespace Bioskop.Podaci.Implementacija
         {
             foreach (Projekcija pr in listProjekcija)
             {
+              /*   if (l.All(x => (p.VremeProjekcije <= x.VremeProjekcije && p.VremeProjekcije >= x.VremeKrajaProjekcije && x.SalaId == p.SalaId) || x.SalaId != p.SalaId) ||
+                 l.All(x1 => (p.VremeProjekcije >= x1.VremeProjekcije && p.VremeProjekcije >= x1.VremeKrajaProjekcije && x1.SalaId == p.SalaId) || x1.SalaId != p.SalaId) || l.Count == 0)
+                 {*/
                 context.Projekcija.Add(pr);
+         //   }
+        
             }
         }
 

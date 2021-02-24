@@ -23,6 +23,7 @@ namespace Bioskop.Podaci.Implementacija
         public void Delete(Sala s)
         {
             context.Sala.Remove(s);
+
         }
 
         public void Dodaj(Sala s)
@@ -59,5 +60,6 @@ namespace Bioskop.Podaci.Implementacija
         {
             return context.Sala.ToList();
         }
+     
     }
 }

@@ -8,6 +8,6 @@ namespace Bioskop.Podaci
     public interface IRepositoryKorisnik:IRepository<Korisnik>
     {
         Korisnik GetByUsernameAndPassword(Korisnik k);
-        bool VecPostoji(string username);
+        bool VecPostoji(string username, string email);
     }
 }

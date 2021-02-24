@@ -9,5 +9,7 @@ namespace Bioskop.Podaci
     {
         List<Projekcija> VratiSveSaId(int id);
         void DodajProjekcije(List<Projekcija> listProjekcija);
+        void izbrisiSvePSala(int id, List<Projekcija> projekcije);
+        void izbrisiSvePFilm(int id, List<Projekcija> projekcije);
     }
 }

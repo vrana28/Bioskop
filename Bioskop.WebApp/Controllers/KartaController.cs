@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Bioskop.Domen;
 using Bioskop.Podaci.UnitOfWork;
 using Bioskop.Podaci.UnitOfWork.Korisnici;
 using Bioskop.WebApp.Filters;
 using Bioskop.WebApp.Models;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using MimeKit;
 
 namespace Bioskop.WebApp.Controllers
 {
@@ -75,12 +75,13 @@ namespace Bioskop.WebApp.Controllers
                 if (model.BrojKarti > 4) throw new Exception("Ne mozete vise od 4 karte");
                 Projekcija p = unitOfWork.Projekcija.NadjiPoId(model.ProjekcijaId);
                 Korisnik k = unitOfWorkKorisnik.Korisnici.NadjiPoId(model.KorisnikId);
-
+                Sala sala = unitOfWork.Sala.NadjiPoId(p.SalaId);
+                Film f = unitOfWork.Film.NadjiPoId(p.FilmId);
                 List<string> karte = new List<string>();
                 List<Sediste> listaSedista = unitOfWork.Sediste.VratiSvaSlobodnaMesta(p.ProjekcijaId, p.SalaId);
                 if (model.BrojKarti > listaSedista.Count) throw new Exception();
                 listaSedista = listaSedista.Take(model.BrojKarti).ToList();
-
+                List<string> rezervacija = new List<string>();
                 foreach (Sediste s in listaSedista)
                 {
                     Karta karta = new Karta
@@ -89,10 +90,37 @@ namespace Bioskop.WebApp.Controllers
                         ProjekcijaId = p.ProjekcijaId,
                         RedKolona = "Red:"+s.Red+" "+"Kolona:"+s.Kolona.ToString()
                     };
+                    rezervacija.Add(karta.RedKolona);
                     unitOfWork.Karta.Dodaj(karta);
                     unitOfWork.Sediste.Update(s);
                 }
                 unitOfWork.Commit();
+                string rezerv="";
+                foreach (string rez in rezervacija) {
+                    rezerv +=rez + "\n";
+                }
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Bioskop WebApp", "maredjuric155@gmail.com"));
+                message.To.Add(new MailboxAddress(k.Ime+" "+k.Prezime, k.Email));
+                message.Subject = $"Rezervacija za {f.Naziv}";
+                message.Body = new TextPart("plain")
+                {
+                    Text = "REZERVACIJA \n\n"
+                    +$"Film :{f.Naziv} \n"
+                    +$"Sala: {sala.NazivSale} \n"
+                    +$"Vreme pocetka projekcije: {p.VremeProjekcije} \n"
+                    +$"Vreme kraja projekcije: {p.VremeKrajaProjekcije}\n"
+                    +$"Broj karti:{model.BrojKarti} \n"
+                    +$"{rezerv}\n Pozdrav, Bioskop WebApp"
+                    //Text += $"Red i kolona: {rezervacija[0]}";
+                };
+                using (var client = new SmtpClient()) {
+                    client.Connect("smtp.gmail.com", 587, false);
+                    client.Authenticate("maredjuric155@gmail.com", "Testtest12345");
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
+
                 return RedirectToAction("Index","Film");
             }
             catch(Exception ex)

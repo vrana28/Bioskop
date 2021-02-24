@@ -44,9 +44,9 @@ namespace Bioskop.Podaci.Implementacija
             throw new NotImplementedException();
         }
 
-        public bool VecPostoji(string username)
+        public bool VecPostoji(string username, string email)
         {
-            return context.Korisnik.Any(k => k.Username == username);
+            return context.Korisnik.Any(k => k.Username == username || k.Email==email);
         }
 
         public List<Korisnik> VratiSve()

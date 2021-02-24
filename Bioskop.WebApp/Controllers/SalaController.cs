@@ -59,7 +59,7 @@ namespace Bioskop.WebApp.Controllers
             {
 
                 unitOfWork.Sala.Dodaj(model.Sala);
-                unitOfWork.Sala.DodajSvaSedista(model.Sala);
+           //     unitOfWork.Sala.DodajSvaSedista(model.Sala);
 
                 unitOfWork.Commit();
                 return RedirectToAction("Index", "Sala");
@@ -98,7 +98,7 @@ namespace Bioskop.WebApp.Controllers
         }
 
         // GET: Sala/Delete/5
-        public ActionResult Delete(int id)
+      /*  public ActionResult Delete(int id)
         {
             Sala model = unitOfWork.Sala.NadjiPoId(id);
             ViewBag.IsLoggedIn = true;
@@ -112,6 +112,19 @@ namespace Bioskop.WebApp.Controllers
                     unitOfWork.Projekcija.Delete(p);
                 }
             }
+
+            unitOfWork.Sala.Delete(model);
+            unitOfWork.Commit();
+            return RedirectToAction("Index");
+        }*/
+        public ActionResult Delete(int id)
+        {
+            Sala model = unitOfWork.Sala.NadjiPoId(id);
+            ViewBag.IsLoggedIn = true;
+            ViewBag.Username = HttpContext.Session.GetString("username");
+            List<Projekcija> projekcije = new List<Projekcija>();
+            projekcije = unitOfWork.Projekcija.VratiSve();
+            unitOfWork.Projekcija.izbrisiSvePSala(id, projekcije);
 
             unitOfWork.Sala.Delete(model);
             unitOfWork.Commit();

@@ -69,11 +69,12 @@ namespace Bioskop.WebApp.Controllers
         {
             try
             {
-                bool exist = unitOfWork.Korisnici.VecPostoji(model.Username);
+                bool exist = unitOfWork.Korisnici.VecPostoji(model.Username,model.Email);
                 if (exist) throw new Exception();
                 Korisnik k = new Korisnik {
                     Ime = model.Ime,
                     Prezime=model.Prezime,
+                    Email = model.Email,
                     Username=model.Username,
                     Password=model.Password,
                     Pol=model.Pol
