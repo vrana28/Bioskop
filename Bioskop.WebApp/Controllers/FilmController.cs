@@ -94,14 +94,15 @@ namespace Bioskop.WebApp.Controllers
                 //viewModel.Film.PutanjaBackPostera = "../img/upload-img/" + fileName2;
                 //fileupload.SaveAs(Path.Combine(Server.MapPath("~/Media"), fileuploadPimage.FileName);
                 //viewModel.Film.ImageFilePoster.SaveAs(Server.MapPath("../img/upload-img/"), fileName1);
-
+                if (viewModel.Film.Naziv == null || viewModel.Film.OpisFilma == null || viewModel.Film.PutanjaBackPostera == null
+                    || viewModel.Film.PutanjaPostera == null || viewModel.Film.Trajanje == 0) throw new Exception();
                 unitOfWork.Film.Dodaj(viewModel.Film);
                 unitOfWork.Commit();
                 return RedirectToAction("Index", "Film");
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, ex.Message);
+                ModelState.AddModelError(string.Empty, "Morate unit sva polja");
                 return RedirectToAction("Create");
             }
 

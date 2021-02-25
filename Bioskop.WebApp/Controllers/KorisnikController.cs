@@ -69,6 +69,7 @@ namespace Bioskop.WebApp.Controllers
         {
             try
             {
+                if (model.Ime == null || model.Prezime == null || model.Username == null || model.Password == null || model.Email == null) throw new Exception();
                 bool exist = unitOfWork.Korisnici.VecPostoji(model.Username,model.Email);
                 if (exist) throw new Exception();
                 Korisnik k = new Korisnik {
@@ -85,8 +86,7 @@ namespace Bioskop.WebApp.Controllers
             }
             catch(Exception ex)
             {
-                ModelState.AddModelError(string.Empty, "Korisnik sa ovim korisnickim imenom," +
-                    "vec postoji.");
+                ModelState.AddModelError(string.Empty, "Losi parametri ili korisnik vec postoji");
                 return View();
             }
         }
