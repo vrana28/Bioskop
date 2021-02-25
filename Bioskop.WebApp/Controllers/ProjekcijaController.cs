@@ -140,40 +140,34 @@ namespace Bioskop.WebApp.Controllers
         // POST: Projekcija/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([FromForm]GoogleCalendarViewModel model)
+        public ActionResult Create([FromForm] GoogleCalendarViewModel model)
         {
             try
             {
                 CalendarDogadjaji();
-                List<Projekcija> l = new List<Projekcija>();
-                l = unitOfWork.Projekcija.VratiSve();
+
                 List<Projekcija> listProjekcija = new List<Projekcija>();
                 if (GoogleEvents.Count == 0) throw new Exception();
+                List<Projekcija> postojeceProjekcije = new List<Projekcija>();
+                postojeceProjekcije = unitOfWork.Projekcija.VratiSve();
+                foreach (var item in GoogleEvents)
+                {
 
-                foreach (var item in GoogleEvents) {
-                   
-                        Projekcija p = new Projekcija
-                        {
-
-                            VremeKrajaProjekcije = item.Projekcija.VremeKrajaProjekcije,
-                            VremeProjekcije = item.Projekcija.VremeProjekcije,
-                            Cena = item.Projekcija.Cena,
-                            SalaId = model.Projekcija.SalaId,
-                            FilmId = model.Projekcija.FilmId
-                        };
-
-                   /* if (l.All(x => (p.VremeProjekcije <= x.VremeProjekcije && p.VremeProjekcije >= x.VremeKrajaProjekcije && x.SalaId == p.SalaId) || x.SalaId != p.SalaId) ||
-                    l.All(x1 => (p.VremeProjekcije >= x1.VremeProjekcije && p.VremeProjekcije >= x1.VremeKrajaProjekcije && x1.SalaId == p.SalaId) || x1.SalaId != p.SalaId) || l.Count == 0)
-                    {*/
-                        listProjekcija.Add(p);
-                    /*}
-                    else
+                    Projekcija p = new Projekcija
                     {
-                        Console.WriteLine();
-                    }*/
+
+                        VremeKrajaProjekcije = item.Projekcija.VremeKrajaProjekcije,
+                        VremeProjekcije = item.Projekcija.VremeProjekcije,
+                        Cena = item.Projekcija.Cena,
+                        SalaId = model.Projekcija.SalaId,
+                        FilmId = model.Projekcija.FilmId
+                    };
+
+                    listProjekcija.Add(p);
+
                 }
-                
-                unitOfWork.Projekcija.DodajProjekcije(listProjekcija);
+
+                unitOfWork.Projekcija.DodajProjekcije(listProjekcija, postojeceProjekcije);
                 unitOfWork.Commit();
                 unitOfWork.Sediste.DodajSedistaZaProjekciju(listProjekcija);
                 unitOfWork.Commit();
@@ -215,6 +209,10 @@ namespace Bioskop.WebApp.Controllers
             ViewBag.IsLoggedIn = true;
             ViewBag.Username = HttpContext.Session.GetString("username");
             Projekcija p = unitOfWork.Projekcija.NadjiPoId(id);
+            List<Karta> karte = unitOfWork.Karta.VratiSve();
+            List<Sediste> sedista = unitOfWork.Sediste.VratiSve();
+            unitOfWork.Karta.IzbrisiSveIzP(karte, p);
+            unitOfWork.Sediste.izbrisiSvaSedistaP(sedista, p);
             unitOfWork.Projekcija.Delete(p);
             unitOfWork.Commit();
             return RedirectToAction("Index");

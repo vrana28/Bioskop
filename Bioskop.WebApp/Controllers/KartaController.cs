@@ -82,53 +82,46 @@ namespace Bioskop.WebApp.Controllers
                 if (model.BrojKarti > listaSedista.Count) throw new Exception();
                 listaSedista = listaSedista.Take(model.BrojKarti).ToList();
                 List<string> rezervacija = new List<string>();
-                foreach (Sediste s in listaSedista)
-                {
-                    Karta karta = new Karta
-                    {
-                        KorisnikId = k.KorisnikId,
-                        ProjekcijaId = p.ProjekcijaId,
-                        RedKolona = "Red:"+s.Red+" "+"Kolona:"+s.Kolona.ToString()
-                    };
-                    rezervacija.Add(karta.RedKolona);
-                    unitOfWork.Karta.Dodaj(karta);
-                    unitOfWork.Sediste.Update(s);
-                }
+                rezervacija = unitOfWork.Karta.Rezervisi(listaSedista, k, p);
+
                 unitOfWork.Commit();
-                string rezerv="";
-                foreach (string rez in rezervacija) {
-                    rezerv +=rez + "\n";
+                string rezerv = "";
+                foreach (string rez in rezervacija)
+                {
+                    rezerv += rez + "\n";
                 }
                 var message = new MimeMessage();
                 message.From.Add(new MailboxAddress("Bioskop WebApp", "maredjuric155@gmail.com"));
-                message.To.Add(new MailboxAddress(k.Ime+" "+k.Prezime, k.Email));
+                message.To.Add(new MailboxAddress(k.Ime + " " + k.Prezime, k.Email));
                 message.Subject = $"Rezervacija za {f.Naziv}";
                 message.Body = new TextPart("plain")
                 {
                     Text = "REZERVACIJA \n\n"
-                    +$"Film :{f.Naziv} \n"
-                    +$"Sala: {sala.NazivSale} \n"
-                    +$"Vreme pocetka projekcije: {p.VremeProjekcije} \n"
-                    +$"Vreme kraja projekcije: {p.VremeKrajaProjekcije}\n"
-                    +$"Broj karti:{model.BrojKarti} \n"
-                    +$"{rezerv}\n Pozdrav, Bioskop WebApp"
+                    + $"Film :{f.Naziv} \n"
+                    + $"Sala: {sala.NazivSale} \n"
+                    + $"Vreme pocetka projekcije: {p.VremeProjekcije} \n"
+                    + $"Vreme kraja projekcije: {p.VremeKrajaProjekcije}\n"
+                    + $"Broj karti:{model.BrojKarti} \n"
+                    + $"{rezerv}\n Pozdrav, Bioskop WebApp"
                     //Text += $"Red i kolona: {rezervacija[0]}";
                 };
-                using (var client = new SmtpClient()) {
+                using (var client = new SmtpClient())
+                {
                     client.Connect("smtp.gmail.com", 587, false);
                     client.Authenticate("maredjuric155@gmail.com", "Testtest12345");
                     client.Send(message);
                     client.Disconnect(true);
                 }
 
-                return RedirectToAction("Index","Film");
+                return RedirectToAction("Index", "Film");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, "Greska");
                 return RedirectToAction("Create");
             }
         }
+
 
         // GET: Karta/Edit/5
         public ActionResult Edit(int id)

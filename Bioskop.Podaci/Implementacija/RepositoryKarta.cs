@@ -29,9 +29,47 @@ namespace Bioskop.Podaci.Implementacija
             context.Karta.Add(s);
         }
 
+        public void IzbrisiSveIzP(List<Karta> karte, Projekcija p)
+        {
+            foreach (Karta k in karte)
+            {
+                if (k.ProjekcijaId == p.ProjekcijaId)
+                {
+                    context.Karta.Remove(k);
+                }
+            }
+        }
+
         public Karta NadjiPoId(int id)
         {
             return context.Karta.Find(id);
+        }
+
+        public List<string> Rezervisi(List<Sediste> listaSedista, Korisnik k, Projekcija p)
+        {
+            List<string> rezervacija = new List<string>();
+            foreach (Sediste s in listaSedista)
+            {
+                Karta karta = new Karta
+                {
+                    KorisnikId = k.KorisnikId,
+                    ProjekcijaId = p.ProjekcijaId,
+                    RedKolona = "Red:" + s.Red + " " + "Kolona:" + s.Kolona.ToString()
+                };
+                rezervacija.Add(karta.RedKolona);
+                context.Karta.Add(karta);
+                Sediste nova = new Sediste
+                {
+                    Red = s.Red,
+                    Kolona = s.Kolona,
+                    ProjekcijaId = s.ProjekcijaId,
+                    SalaId = s.SalaId,
+                    SlobodnoSediste = false,
+                };
+                context.Sediste.Remove(s);
+                context.Sediste.Add(nova);
+            }
+            return rezervacija;
         }
 
         public void Update(Karta s)

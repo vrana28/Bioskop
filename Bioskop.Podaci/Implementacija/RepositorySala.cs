@@ -1,4 +1,5 @@
-﻿using Bioskop.Domen;
+﻿
+using Bioskop.Domen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,6 @@ namespace Bioskop.Podaci.Implementacija
         {
             return context.Sala.ToList();
         }
-     
+
     }
 }

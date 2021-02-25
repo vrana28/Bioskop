@@ -98,25 +98,25 @@ namespace Bioskop.WebApp.Controllers
         }
 
         // GET: Sala/Delete/5
-      /*  public ActionResult Delete(int id)
-        {
-            Sala model = unitOfWork.Sala.NadjiPoId(id);
-            ViewBag.IsLoggedIn = true;
-            ViewBag.Username = HttpContext.Session.GetString("username");
-            List<Projekcija> projekcije = new List<Projekcija>();
-            projekcije = unitOfWork.Projekcija.VratiSve();
-            foreach (Projekcija p in projekcije)
-            {
-                if (p.SalaId == id)
-                {
-                    unitOfWork.Projekcija.Delete(p);
-                }
-            }
+        /*  public ActionResult Delete(int id)
+          {
+              Sala model = unitOfWork.Sala.NadjiPoId(id);
+              ViewBag.IsLoggedIn = true;
+              ViewBag.Username = HttpContext.Session.GetString("username");
+              List<Projekcija> projekcije = new List<Projekcija>();
+              projekcije = unitOfWork.Projekcija.VratiSve();
+              foreach (Projekcija p in projekcije)
+              {
+                  if (p.SalaId == id)
+                  {
+                      unitOfWork.Projekcija.Delete(p);
+                  }
+              }
 
-            unitOfWork.Sala.Delete(model);
-            unitOfWork.Commit();
-            return RedirectToAction("Index");
-        }*/
+              unitOfWork.Sala.Delete(model);
+              unitOfWork.Commit();
+              return RedirectToAction("Index");
+          }*/
         public ActionResult Delete(int id)
         {
             Sala model = unitOfWork.Sala.NadjiPoId(id);
@@ -130,7 +130,6 @@ namespace Bioskop.WebApp.Controllers
             unitOfWork.Commit();
             return RedirectToAction("Index");
         }
-
         // POST: Sala/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]

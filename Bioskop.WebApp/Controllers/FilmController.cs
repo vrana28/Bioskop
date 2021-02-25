@@ -173,6 +173,5 @@ namespace Bioskop.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-
     }
 }

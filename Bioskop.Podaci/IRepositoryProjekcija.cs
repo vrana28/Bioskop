@@ -8,7 +8,7 @@ namespace Bioskop.Podaci
     public interface IRepositoryProjekcija : IRepository<Projekcija>
     {
         List<Projekcija> VratiSveSaId(int id);
-        void DodajProjekcije(List<Projekcija> listProjekcija);
+        void DodajProjekcije(List<Projekcija> listProjekcija, List<Projekcija> postojeceProjekcije);
         void izbrisiSvePSala(int id, List<Projekcija> projekcije);
         void izbrisiSvePFilm(int id, List<Projekcija> projekcije);
     }

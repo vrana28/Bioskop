@@ -42,14 +42,14 @@ namespace Bioskop.Podaci.Implementacija
                 Kolona = s.Kolona,
                 ProjekcijaId = s.ProjekcijaId,
                 SalaId = s.SalaId,
-                SlobodnoSediste=false,
+                SlobodnoSediste = false,
             };
             context.Sediste.Remove(s);
             context.Sediste.Add(nova);
         }
         public List<Sediste> VratiSve()
         {
-            throw new NotImplementedException();
+            return context.Sediste.ToList();
         }
         public int VratiBrojKolona(Sala sala)
         {
@@ -63,12 +63,12 @@ namespace Bioskop.Podaci.Implementacija
 
         public int BrojSlobodnihSedista(int salaId, int projekcijaId)
         {
-            return context.Sediste.Where(s => s.SalaId == salaId && s.ProjekcijaId==projekcijaId && s.SlobodnoSediste==true).Count();
+            return context.Sediste.Where(s => s.SalaId == salaId && s.ProjekcijaId == projekcijaId && s.SlobodnoSediste == true).Count();
         }
 
         public void DodajSedistaZaProjekciju(List<Projekcija> listProjekcija)
         {
-           
+
             foreach (Projekcija p in listProjekcija)
             {
                 Sala s = context.Sala.Find(p.SalaId);
@@ -79,16 +79,27 @@ namespace Bioskop.Podaci.Implementacija
                     for (int j = 1; j < br; j++)
                     {
                         char r = (char)(j + 'a' - 1);
-                        context.Sediste.Add(new Sediste { SlobodnoSediste=true,Kolona = i, Red = r, Sala = s,ProjekcijaId=p.ProjekcijaId, SalaId = p.SalaId });
+                        context.Sediste.Add(new Sediste { SlobodnoSediste = true, Kolona = i, Red = r, Sala = s, ProjekcijaId = p.ProjekcijaId, SalaId = p.SalaId });
                     }
 
-                } 
+                }
             }
         }
 
         public List<Sediste> VratiSvaSlobodnaMesta(int projekcijaId, int salaId)
         {
             return context.Sediste.Where(s => s.ProjekcijaId == projekcijaId && s.SalaId == salaId && s.SlobodnoSediste == true).ToList();
+        }
+
+        public void izbrisiSvaSedistaP(List<Sediste> sedista, Projekcija p)
+        {
+            foreach (Sediste s in sedista)
+            {
+                if (s.ProjekcijaId == p.ProjekcijaId)
+                {
+                    context.Sediste.Remove(s);
+                }
+            }
         }
     }
 }

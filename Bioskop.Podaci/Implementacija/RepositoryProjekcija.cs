@@ -21,7 +21,7 @@ namespace Bioskop.Podaci.Implementacija
 
         public void Delete(Projekcija s)
         {
-            List<Sediste> sedista = context.Sediste.Where(x=>x.ProjekcijaId==s.ProjekcijaId ).ToList();
+            List<Sediste> sedista = context.Sediste.Where(x => x.ProjekcijaId == s.ProjekcijaId).ToList();
             if (sedista != null)
             {
                 foreach (Sediste sed in sedista)
@@ -32,21 +32,39 @@ namespace Bioskop.Podaci.Implementacija
 
             context.Projekcija.Remove(s);
         }
-         public void izbrisiSvePFilm(int id, List<Projekcija> projekcije)
+        public void izbrisiSvePFilm(int id, List<Projekcija> projekcije)
         {
-        foreach (Projekcija p in projekcije)
-        {
-            if (p.FilmId == id)
-            {
-                context.Projekcija.Remove(p);
-            }
-        }
-    }
-        public void izbrisiSvePSala(int id, List<Projekcija> projekcije)
-        {
+            List<Karta> karte = context.Karta.ToList();
             if (projekcije.Count == 0) return;
             foreach (Projekcija p in projekcije)
             {
+                foreach (Karta k in karte)
+                {
+                    if (k.ProjekcijaId == p.ProjekcijaId)
+                    {
+                        context.Karta.Remove(k);
+                    }
+                }
+                if (p.FilmId == id)
+                {
+                   Delete(p);
+                }
+            }
+        }
+        public void izbrisiSvePSala(int id, List<Projekcija> projekcije)
+        {
+            List<Karta> karte = context.Karta.ToList();
+
+            if (projekcije.Count == 0) return;
+            foreach (Projekcija p in projekcije)
+            {
+                foreach (Karta k in karte)
+                {
+                    if (k.ProjekcijaId == p.ProjekcijaId)
+                    {
+                        context.Karta.Remove(k);
+                    }
+                }
                 if (p.SalaId == id)
                 {
                     Delete(p);
@@ -59,16 +77,22 @@ namespace Bioskop.Podaci.Implementacija
             context.Projekcija.Add(s);
         }
 
-        public void DodajProjekcije(List<Projekcija> listProjekcija)
+        public void DodajProjekcije(List<Projekcija> listProjekcija, List<Projekcija> postojecePROJEKCIJE)
         {
+
             foreach (Projekcija pr in listProjekcija)
             {
-              /*   if (l.All(x => (p.VremeProjekcije <= x.VremeProjekcije && p.VremeProjekcije >= x.VremeKrajaProjekcije && x.SalaId == p.SalaId) || x.SalaId != p.SalaId) ||
-                 l.All(x1 => (p.VremeProjekcije >= x1.VremeProjekcije && p.VremeProjekcije >= x1.VremeKrajaProjekcije && x1.SalaId == p.SalaId) || x1.SalaId != p.SalaId) || l.Count == 0)
-                 {*/
-                context.Projekcija.Add(pr);
-         //   }
-        
+                if (postojecePROJEKCIJE == null)
+                {
+                    context.Projekcija.Add(pr);
+                }
+
+             //   else if (!postojecePROJEKCIJE.Any(x => (pr.VremeProjekcije >= x.VremeProjekcije && pr.VremeProjekcije <= x.VremeKrajaProjekcije) ||
+            //     (pr.VremeKrajaProjekcije >= x.VremeProjekcije && pr.VremeKrajaProjekcije <= x.VremeKrajaProjekcije)))
+               else {
+                    context.Projekcija.Add(pr);
+                 }
+
             }
         }
 
