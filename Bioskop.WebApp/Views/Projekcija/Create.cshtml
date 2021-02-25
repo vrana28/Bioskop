@@ -1,13 +1,11 @@
 ﻿@model Bioskop.WebApp.Models.GoogleCalendarViewModel
 
 @{
-    ViewData["Title"] = "Unos Projekcije";
+    ViewData["Title"] = "Bioskop-Projekcija";
 }
 
-
-
 <hr />
-<h3>Vreme projekcija</h3>
+<h4 class="display-3">Vreme projekcija</h4>
 @if (ViewBag.EventList != null)
 {
 
@@ -47,7 +45,7 @@ else
             </div>
             
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Kreiraj" class="btn btn-primary" />
             </div>
         </form>
     </div>

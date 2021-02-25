@@ -1,4 +1,4 @@
-﻿a.navbar-brand {
+﻿.forma.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
@@ -29,7 +29,7 @@ a {
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
-    background-color: #1b6ec2;
+    background-color: #e9ecef;
     border-color: #1861ac;
 }
 

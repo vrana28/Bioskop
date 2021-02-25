@@ -57,7 +57,7 @@ namespace Bioskop.WebApp.Controllers
         {
             try
             {
-
+                if (model.Sala.BrojKolona <= 0 || model.Sala.BrojRedova <= 0) throw new Exception();
                 unitOfWork.Sala.Dodaj(model.Sala);
            //     unitOfWork.Sala.DodajSvaSedista(model.Sala);
 
@@ -67,7 +67,7 @@ namespace Bioskop.WebApp.Controllers
             catch (Exception ex)
             {
 
-                ModelState.AddModelError(string.Empty, ex.Message);
+                ModelState.AddModelError(string.Empty, "Broj kolona/redova ne moze biti negativan.");
                 return RedirectToAction("Create");
             }
         }
