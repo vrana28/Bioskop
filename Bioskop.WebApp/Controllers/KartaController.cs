@@ -13,17 +13,26 @@ using MimeKit;
 
 namespace Bioskop.WebApp.Controllers
 {
+    /// <summary>
+    /// Controller for Ticket (Karta) class
+    /// </summary>
     [LoggedInKorisnik]
     public class KartaController : Controller
     {
+        /// <value>Represent unit of work</value>
         private readonly IUnitOfWork unitOfWork;
         private readonly IKorisniciUnitOfWork unitOfWorkKorisnik;
+        /// <value>Represent ticket as class Karta</value>
         public Karta Karta { get; set; }
         public KartaController(IUnitOfWork unitOfWork, IKorisniciUnitOfWork unitOfWorkKorisnik)
         {
             this.unitOfWork = unitOfWork;
             this.unitOfWorkKorisnik = unitOfWorkKorisnik;
         }
+        /// <summary>
+        /// Returns index page
+        /// </summary>
+        /// <returns>Model as index page</returns>
         // GET: Karta
         public ActionResult Index()
         {
@@ -32,12 +41,22 @@ namespace Bioskop.WebApp.Controllers
             return View("Index");
         }
 
+        /// <summary>
+        /// Returns selected id of ticket
+        /// </summary>
+        /// <param name="id">Ticket id as int</param>
+        /// <returns>Model</returns>
         // GET: Karta/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
+        /// <summary>
+        /// Creating model of Ticket
+        /// </summary>
+        /// <param name="id">Projekcija id as int</param>
+        /// <returns>Model with all needed data</returns>
         // GET: Karta/Create
         public ActionResult Create(int id)
         {
@@ -65,6 +84,11 @@ namespace Bioskop.WebApp.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Creating list of tickets so we can make reservation and send it to client.
+        /// </summary>
+        /// <param name="model">Model of all neded information</param>
+        /// <returns>Redirect to same page if mistake, or projection page if successfully</returns>
         // POST: Karta/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -122,7 +146,11 @@ namespace Bioskop.WebApp.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Edit Ticket
+        /// </summary>
+        /// <param name="id">Represent id of ticket as int</param>
+        /// <returns>Model view</returns>
         // GET: Karta/Edit/5
         public ActionResult Edit(int id)
         {
@@ -130,6 +158,12 @@ namespace Bioskop.WebApp.Controllers
         }
 
         // POST: Karta/Edit/5
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -146,6 +180,11 @@ namespace Bioskop.WebApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleting ticket
+        /// </summary>
+        /// <param name="id">Ticket id as int</param>
+        /// <returns>Model</returns>
         // GET: Karta/Delete/5
         public ActionResult Delete(int id)
         {
@@ -160,7 +199,6 @@ namespace Bioskop.WebApp.Controllers
             try
             {
                 // TODO: Add delete logic here
-
                 return RedirectToAction(nameof(Index));
             }
             catch

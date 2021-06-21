@@ -12,15 +12,22 @@ using System.Text.Json;
 
 namespace Bioskop.WebApp.Controllers
 {
+    /// <summary>
+    /// Represent controller for User class
+    /// </summary>
     public class KorisnikController : Controller
     {
+        /// <values>Unit of work</values>
         private readonly IKorisniciUnitOfWork unitOfWork;
-
         public KorisnikController(IKorisniciUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
 
+        /// <summary>
+        /// Returns login page
+        /// </summary>
+        /// <returns>Login page</returns>
         // GET: Korisnik
         [ActionName("Login")]
         public ActionResult Index()
@@ -28,6 +35,12 @@ namespace Bioskop.WebApp.Controllers
             return View("Login");
         }
 
+        /// <summary>
+        /// Login and checking credentials
+        /// </summary>
+        /// <param name="model">Model as User (Korisnik)</param>
+        /// <returns>Redirect to dashboard if successfuly or login page if mistake has been made</returns>
+        /// <exception cref="Exception">When credentials are not good</exception>
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
@@ -52,8 +65,6 @@ namespace Bioskop.WebApp.Controllers
             }
         }
 
-
-
         // GET: Korisnik/Create
         [ActionName("Register")]
         public ActionResult Create()
@@ -61,6 +72,12 @@ namespace Bioskop.WebApp.Controllers
             return View("Register");
         }
 
+        /// <summary>
+        /// Registering new user to database after validation.
+        /// </summary>
+        /// <param name="model">Model of User as RegisterViewModel</param>
+        /// <returns></returns>
+        /// <exception cref="Exception">When user we enter already exist with that parametar</exception>
         // POST: Korisnik/Create
         [ActionName("Register")]
         [HttpPost]
@@ -92,7 +109,10 @@ namespace Bioskop.WebApp.Controllers
         }
 
 
-
+        /// <summary>
+        /// Clearing session and log out from Cinema interface.
+        /// </summary>
+        /// <returns>Redirect to Login page</returns>
         public ActionResult Logout()
         {
             HttpContext.Session.Clear();

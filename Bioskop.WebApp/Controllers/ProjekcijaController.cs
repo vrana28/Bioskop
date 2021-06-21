@@ -20,12 +20,18 @@ using Bioskop.WebApp.Filters;
 
 namespace Bioskop.WebApp.Controllers
 {
+    /// <summary>
+    /// Represent controller for Projekcija class
+    /// </summary>
     [LoggedInKorisnik]
     public class ProjekcijaController : Controller
     {
+        /// <values>Represent list of google events from Google Calendar</values>
         public List<GoogleCalendarViewModel> GoogleEvents = new List<GoogleCalendarViewModel>();
         static string[] Scopes = { CalendarService.Scope.CalendarReadonly };
+        /// <values>Represent name of API</values>
         static string ApplicationName = "Google Calendar API .NET Quickstart";
+        /// <values>Represent unit of work</values>
         private readonly IUnitOfWork unitOfWork;
         
         public ProjekcijaController(IUnitOfWork unitOfWork)
@@ -33,6 +39,10 @@ namespace Bioskop.WebApp.Controllers
             this.unitOfWork = unitOfWork;
         }
 
+        /// <summary>
+        /// Listing all active films and there halls.
+        /// </summary>
+        /// <returns>Model with inormation about films and halls</returns>
         // GET: Projekcija
         public ActionResult Index()
         {
@@ -47,8 +57,9 @@ namespace Bioskop.WebApp.Controllers
             return View(model);
         }
 
-        
-
+        /// <summary>
+        /// Getting JSON data from Google Calendar API about admins schedule of projections.
+        /// </summary>
         public void CalendarDogadjaji() {
 
             UserCredential credential;
@@ -103,6 +114,11 @@ namespace Bioskop.WebApp.Controllers
 
         }
 
+        /// <summary>
+        /// Getting details information about projection and chance to make reservation.
+        /// </summary>
+        /// <param name="id">Projekcije id as int</param>
+        /// <returns>Model with information</returns>
         // GET: Projekcija/Details/5
         public ActionResult Details(int id)
         {
@@ -117,6 +133,10 @@ namespace Bioskop.WebApp.Controllers
             return View("Index",model.OrderBy(x=>x.VremeProjekcije).ToList());
         }
 
+        /// <summary>
+        /// Getting informaton from API after we inserted data to model (GoogleCalendarViewModel)
+        /// </summary>
+        /// <returns>Model with all needed information</returns>
         // GET: Projekcija/Create
         public ActionResult Create()
         {
@@ -130,13 +150,18 @@ namespace Bioskop.WebApp.Controllers
             {
                 Sale = selectList1,
                 Filmovi = selectList2
-
             };
             CalendarDogadjaji();
             ViewBag.EventList = GoogleEvents;
             return View(model);
         }
 
+        /// <summary>
+        /// Reading data from GoogleEvents 
+        /// </summary>
+        /// <param name="model">Information about Sala and Film choosen for projection</param>
+        /// <returns></returns>
+        /// <exception cref="NullReferenceException">When there is no data in model.</exception>
         // POST: Projekcija/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -152,7 +177,6 @@ namespace Bioskop.WebApp.Controllers
                 postojeceProjekcije = unitOfWork.Projekcija.VratiSve();
                 foreach (var item in GoogleEvents)
                 {
-
                     Projekcija p = new Projekcija
                     {
 
@@ -173,7 +197,7 @@ namespace Bioskop.WebApp.Controllers
                 unitOfWork.Commit();
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex)
+            catch (NullReferenceException ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
                 return View("Create");
@@ -203,6 +227,11 @@ namespace Bioskop.WebApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleting projection 
+        /// </summary>
+        /// <param name="id">Projection id as int</param>
+        /// <returns>Redirecting to index page</returns>
         // GET: Projekcija/Delete/5
         public ActionResult Delete(int id)
         {

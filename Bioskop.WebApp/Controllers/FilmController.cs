@@ -17,15 +17,23 @@ using Microsoft.Web.Helpers;
 
 namespace Bioskop.WebApp.Controllers
 {
-  // moze da se stavi na njivou kontrolera
+    /// <summary>
+    /// Controller for Film class
+    /// </summary>
     public class FilmController : Controller
     {
+        /// <values>Represent unitOfWork attribute</values>
         private readonly IUnitOfWork unitOfWork;
+        
         public FilmController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
 
+        /// <summary>
+        /// Returns list of Films after he check users session.
+        /// </summary>
+        /// <returns> List of Films as object Film</returns>
         // GET: Film
         [NotLoggedIn]
         public ActionResult Index()
@@ -36,20 +44,20 @@ namespace Bioskop.WebApp.Controllers
             {
                 ViewBag.IsLoggedIn = true;
                 ViewBag.Username = HttpContext.Session.GetString("username");
-                //byte[] userBy = HttpContext.Session.Get("user"); // user je key
-                //Korisnik k = JsonSerializer.Deserialize<Korisnik>(userBy); nece 22:43
-                // za slucaj korpe je pozeljno koristiti serijalizaciju/deserijalizaciju objekta
-
             }
             else
             {
-                //return RedirectToAction("Login", "Korisnik");
                 return View("Index", filmovi);
             }
             return View("Index", filmovi);
         }
 
         // eksplicitno naglasavanje da dolazi iz rute.. [FromRoute] 
+        /// <summary>
+        /// Returns model (Film) of selected id from route. 
+        /// </summary>
+        /// <param name="id">Int representation of films id</param>
+        /// <returns>Model as Film</returns>
         [NotLoggedIn]
         public ActionResult Details([FromRoute] int id) {
 
@@ -59,6 +67,11 @@ namespace Bioskop.WebApp.Controllers
             //model.PutanjaBackPostera = model.PutanjaBackPostera.Replace("//")
             return View(model);
         }
+
+        /// <summary>
+        /// Getting Hall from database, so it can be used for creating Filme
+        /// </summary>
+        /// <returns>Model as list of Sala (selected item)</returns>
         [LoggedInKorisnik]
         [HttpGet]
         public ActionResult Create() {
@@ -76,7 +89,12 @@ namespace Bioskop.WebApp.Controllers
         }
 
         // da posmatra kao podatke sa forme
-        // za JSON [FromBody
+        // za JSON [FromBody]
+        /// <summary>
+        /// Adding Films in database
+        /// </summary>
+        /// <param name="viewModel">Model as film who will be added int database</param>
+        /// <returns>Redirect to Create page</returns>
         [LoggedInKorisnik]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -84,16 +102,6 @@ namespace Bioskop.WebApp.Controllers
         {
             try
             {
-                //string fileName1 = Path.GetFileNameWithoutExtension(viewModel.Film.ImageFilePoster.FileName);
-                //string fileName2 = Path.GetFileNameWithoutExtension(viewModel.Film.ImageFileBackPoster.FileName);
-                //string extension1 = Path.GetExtension(viewModel.Film.ImageFilePoster.FileName);
-                //string extension2 = Path.GetExtension(viewModel.Film.ImageFileBackPoster.FileName);
-                //fileName1 = fileName1 + DateTime.Now.ToString() + extension1;
-                //fileName2 = fileName2 + DateTime.Now.ToString() + extension2;
-                //viewModel.Film.PutanjaPostera = "../img/upload-img/" + fileName1;
-                //viewModel.Film.PutanjaBackPostera = "../img/upload-img/" + fileName2;
-                //fileupload.SaveAs(Path.Combine(Server.MapPath("~/Media"), fileuploadPimage.FileName);
-                //viewModel.Film.ImageFilePoster.SaveAs(Server.MapPath("../img/upload-img/"), fileName1);
                 if (viewModel.Film.Naziv == null || viewModel.Film.OpisFilma == null || viewModel.Film.PutanjaBackPostera == null
                     || viewModel.Film.PutanjaPostera == null || viewModel.Film.Trajanje == 0) throw new Exception();
                 unitOfWork.Film.Dodaj(viewModel.Film);
@@ -102,28 +110,16 @@ namespace Bioskop.WebApp.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, "Morate unit sva polja");
+                ModelState.AddModelError(string.Empty, "Morate uneti sva polja");
                 return RedirectToAction("Create");
             }
-
-
-            //if (!ModelState.IsValid) {
-            //    return View("Create");
-            //}
-
-
-            //bool exist = unitOfWork.Film.Search(f => f.Naziv == film.Naziv).Any();
-
-            //if (exist)
-            //{
-            //    ModelState.AddModelError("FilmName", "Film sa ovim nazivom vec postoji");
-            //    return View("Create");
-            //}
-            //unitOfWork.Film.Dodaj(film);
-            //unitOfWork.Commit();
-            //return Index();
         }
 
+        /// <summary>
+        /// Getting Sala from database
+        /// </summary>
+        /// <param name="request">Model as Projekcija</param>
+        /// <returns>Model as ProjekcijaPartial</returns>
         [LoggedInKorisnik]
         [HttpPost]
         public ActionResult AddSala(ProjekcijaViewModel request) {
@@ -137,26 +133,12 @@ namespace Bioskop.WebApp.Controllers
             return PartialView("ProjekcijaPartial",model);
         }
 
-        [NotLoggedIn]
-        /*  public ActionResult Delete([FromRoute] int id)
-          {
-              Film model = unitOfWork.Film.NadjiPoId(id);
-              ViewBag.IsLoggedIn = true;
-              ViewBag.Username = HttpContext.Session.GetString("username");
-              List<Projekcija> projekcije = new List<Projekcija>();
-              projekcije = unitOfWork.Projekcija.VratiSve();
-              foreach (Projekcija p in projekcije)
-              {
-                  if (p.FilmId == id)
-                  {
-                      unitOfWork.Projekcija.Delete(p);
-                  }
-              }
-
-              unitOfWork.Film.Delete(model);
-              unitOfWork.Commit();
-              return RedirectToAction("Index");
-          }*/
+        /// <summary>
+        /// Deleting film
+        /// </summary>
+        /// <param name="id">Film id as int</param>
+        /// <returns>Redirection to Index page</returns>
+        [NotLoggedIn]          
         public ActionResult Delete([FromRoute] int id)
         {
             Film model = unitOfWork.Film.NadjiPoId(id);

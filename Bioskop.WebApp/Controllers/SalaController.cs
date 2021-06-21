@@ -13,14 +13,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bioskop.WebApp.Controllers
 {
+    /// <summary>
+    /// Represent controller for Sala (hall) controller
+    /// </summary>
     [LoggedInKorisnik]
     public class SalaController : Controller
     {
+        /// <value>Represent unit of work</value>
         private readonly IUnitOfWork unitOfWork;
         public SalaController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
+
+        /// <summary>
+        /// Rerturns all halls
+        /// </summary>
+        /// <returns>List of Sala</returns>
         // GET: Sala
         public ActionResult Index()
         {
@@ -30,14 +39,11 @@ namespace Bioskop.WebApp.Controllers
             return View("Index", sale);
         }
 
-
-
         // GET: Sala/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
-
 
 
         // GET: Sala/Create
@@ -49,7 +55,12 @@ namespace Bioskop.WebApp.Controllers
         }
 
 
-
+        /// <summary>
+        /// Creating sala (hall)
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Redirect based on entered data</returns>
+        /// <exception cref="Exception">Number of rows and colums cant be negative.</exception>
         // POST: Sala/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -97,26 +108,11 @@ namespace Bioskop.WebApp.Controllers
             }
         }
 
-        // GET: Sala/Delete/5
-        /*  public ActionResult Delete(int id)
-          {
-              Sala model = unitOfWork.Sala.NadjiPoId(id);
-              ViewBag.IsLoggedIn = true;
-              ViewBag.Username = HttpContext.Session.GetString("username");
-              List<Projekcija> projekcije = new List<Projekcija>();
-              projekcije = unitOfWork.Projekcija.VratiSve();
-              foreach (Projekcija p in projekcije)
-              {
-                  if (p.SalaId == id)
-                  {
-                      unitOfWork.Projekcija.Delete(p);
-                  }
-              }
-
-              unitOfWork.Sala.Delete(model);
-              unitOfWork.Commit();
-              return RedirectToAction("Index");
-          }*/
+        /// <summary>
+        /// Deleting sala (hall)
+        /// </summary>
+        /// <param name="id">Sala id as int</param>
+        /// <returns>Redirecting to index page</returns>
         public ActionResult Delete(int id)
         {
             Sala model = unitOfWork.Sala.NadjiPoId(id);
