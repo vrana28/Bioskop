@@ -39,16 +39,16 @@ namespace Bioskop.WebApp.Controllers
         public ActionResult Index()
         {
             List<Film> filmovi = unitOfWork.Film.VratiSve();
-            int? userid = HttpContext.Session.GetInt32("userid");
-            if (userid != null)
-            {
-                ViewBag.IsLoggedIn = true;
-                ViewBag.Username = HttpContext.Session.GetString("username");
-            }
-            else
-            {
-                return View("Index", filmovi);
-            }
+            //int? userid = HttpContext.Session.GetInt32("userid");
+            //if (userid != null)
+            //{
+            //    ViewBag.IsLoggedIn = true;
+            //    ViewBag.Username = HttpContext.Session.GetString("username");
+            //}
+            //else
+            //{
+            //    return View("Index", filmovi);
+            //}
             return View("Index", filmovi);
         }
 
@@ -63,7 +63,7 @@ namespace Bioskop.WebApp.Controllers
 
             Film model = unitOfWork.Film.NadjiPoId(id);
             ViewBag.IsLoggedIn = true;
-            ViewBag.Username = HttpContext.Session.GetString("username");
+            //ViewBag.Username = HttpContext.Session.GetString("username");
             //model.PutanjaBackPostera = model.PutanjaBackPostera.Replace("//")
             return View(model);
         }
@@ -102,6 +102,7 @@ namespace Bioskop.WebApp.Controllers
         {
             try
             {
+                if (viewModel == null) throw new NullReferenceException();
                 if (viewModel.Film.Naziv == null || viewModel.Film.OpisFilma == null || viewModel.Film.PutanjaBackPostera == null
                     || viewModel.Film.PutanjaPostera == null || viewModel.Film.Trajanje == 0) throw new Exception();
                 unitOfWork.Film.Dodaj(viewModel.Film);

@@ -35,14 +35,15 @@ namespace Bioskop.WebApp.Controllers
         {
             List<Sala> sale = unitOfWork.Sala.VratiSve();
             ViewBag.IsLoggedIn = true;
-            ViewBag.Username = HttpContext.Session.GetString("username");
+           // ViewBag.Username = HttpContext.Session.GetString("username");
             return View("Index", sale);
         }
 
         // GET: Sala/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Sala model = unitOfWork.Sala.NadjiPoId(id);
+            return View(model);
         }
 
 
