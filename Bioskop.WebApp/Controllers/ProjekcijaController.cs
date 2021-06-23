@@ -47,7 +47,7 @@ namespace Bioskop.WebApp.Controllers
         public ActionResult Index()
         {
             ViewBag.IsLoggedIn = true;
-            ViewBag.Username = HttpContext.Session.GetString("username");
+           // ViewBag.Username = HttpContext.Session.GetString("username");
             List<Projekcija> model = unitOfWork.Projekcija.VratiSve();
             foreach (Projekcija p in model) {
                 p.Film = unitOfWork.Film.NadjiPoId(p.FilmId);
@@ -123,7 +123,7 @@ namespace Bioskop.WebApp.Controllers
         public ActionResult Details(int id)
         {
             ViewBag.IsLoggedIn = true;
-            ViewBag.Username = HttpContext.Session.GetString("username");
+            //ViewBag.Username = HttpContext.Session.GetString("username");
             List<Projekcija> model = unitOfWork.Projekcija.VratiSveSaId(id);
             foreach (Projekcija p in model)
             {

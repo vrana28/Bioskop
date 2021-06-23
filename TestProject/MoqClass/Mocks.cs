@@ -54,6 +54,7 @@ namespace TestProject.MoqClass
                 Sale().Add(s);
             }).Verifiable();
 
+           
             mockSalaRepository.Setup(r => r.Delete(It.IsAny<Sala>())).Callback((Sala s) =>
             {
                 var sala= Sale().Find(s => s.SalaId == s.SalaId);
@@ -64,12 +65,100 @@ namespace TestProject.MoqClass
 
         }
 
+        public static Mock<IRepositoryProjekcija> GetMockProjekcijaRepository()
+        {
+            var mockProjekcijaRepository = new Mock<IRepositoryProjekcija>();
+
+            var projekcije = new List<Projekcija>()
+            {
+                new Projekcija(){
+                    ProjekcijaId = 1,
+                    Sala = new Sala(){
+                    SalaId = 1,
+                    NazivSale = "Sala 1"},
+                    SalaId = 1,
+                    Film = new Film(){
+                    FilmId = 1,
+                    Naziv = "Naziv 1",
+                    Reziser = "Reziser 1" },
+                    FilmId = 1,
+                    VremeProjekcije = new DateTime(2021,05,12,8,30,0),
+                    VremeKrajaProjekcije = new DateTime(2021, 05, 12, 9, 30, 0),
+                     Cena = 200
+                },
+                new Projekcija(){
+                    ProjekcijaId = 2,
+                    Sala = new Sala(){
+                    SalaId = 1,
+                    NazivSale = "Sala 1"},
+                    SalaId = 1,
+                    Film = new Film(){
+                    FilmId = 1,
+                    Naziv = "Naziv 1",
+                    Reziser = "Reziser 1" },
+                    FilmId = 1,
+                    VremeProjekcije = new DateTime(2021,06,12,8,30,0),
+                    VremeKrajaProjekcije = new DateTime(2021, 06, 12, 9, 30, 0),
+                     Cena = 200
+                },
+                new Projekcija(){
+                    ProjekcijaId = 3,
+                    Sala = new Sala(){
+                    SalaId = 1,
+                    NazivSale = "Sala 1"},
+                    SalaId = 1,
+                    Film = new Film(){
+                    FilmId = 1,
+                    Naziv = "Naziv 1",
+                    Reziser = "Reziser 1" },
+                    FilmId = 1,
+                    VremeProjekcije = new DateTime(2021,07,12,8,30,0),
+                    VremeKrajaProjekcije = new DateTime(2021, 07, 12, 9, 30, 0),
+                     Cena = 200
+                },
+            };
+
+            mockProjekcijaRepository.Setup(x => x.VratiSve()).Returns(projekcije);
+
+            mockProjekcijaRepository.Setup(x => x.NadjiPoId(It.IsAny<int>())).Returns((int f) =>
+            {
+                return projekcije.Find(x => x.ProjekcijaId == f);
+            });
+
+            mockProjekcijaRepository.Setup(x => x.VratiSveSaId(It.IsAny<int>())).Returns((int f) =>
+            {
+                List<Projekcija> listaP = new List<Projekcija>();
+                foreach (Projekcija p in projekcije) {
+                    if (p.ProjekcijaId == f) {
+                        listaP.Add(p);
+                    }
+                }
+                return listaP;
+            });
+
+            mockProjekcijaRepository.Setup(x => x.Dodaj(It.IsAny<Projekcija>())).Callback((Projekcija k) =>
+            {
+                k.ProjekcijaId = 20;
+                projekcije.Add(k);
+            }).Verifiable();
+
+
+            mockProjekcijaRepository.Setup(r => r.Delete(It.IsAny<Projekcija>())).Callback((Projekcija k) =>
+            {
+                var kor = projekcije.Find(s => s.ProjekcijaId == k.ProjekcijaId);
+                projekcije.Remove(kor);
+            }).Verifiable();
+            
+            return mockProjekcijaRepository;
+        }
+
         public static Mock<IUnitOfWork> GetMockUnitOfWork()
         {
             var mockUnitOfWork = new Mock<IUnitOfWork>();
 
             mockUnitOfWork.Setup(uow => uow.Film).Returns(GetMockFilmRepository().Object);
             mockUnitOfWork.Setup(uow => uow.Sala).Returns(GetMockSalaRepository().Object);
+            mockUnitOfWork.Setup(uow => uow.Projekcija).Returns(GetMockProjekcijaRepository().Object);
 
             mockUnitOfWork.Setup(uow => uow.Commit()).Verifiable();
 
@@ -92,7 +181,12 @@ namespace TestProject.MoqClass
                     OpisFilma = "Opis filma 1",
                     YoutubeTrailer = "Youtube trailer 1",
                     Sale = new List<Projekcija>(){
-                        new Projekcija(){ }
+                        new Projekcija(){
+                            ProjekcijaId=1,
+                        },
+                        new Projekcija(){
+                            ProjekcijaId=2,
+                        }
                     }
                 },
                 new Film(){
@@ -107,7 +201,12 @@ namespace TestProject.MoqClass
                     OpisFilma = "Opis filma 2",
                     YoutubeTrailer = "Youtube trailer 2",
                     Sale = new List<Projekcija>(){
-                        new Projekcija(){ }
+                        new Projekcija(){
+                            ProjekcijaId=1,
+                        },
+                        new Projekcija(){
+                            ProjekcijaId=2,
+                        }
                     }
 
                 },
@@ -123,7 +222,12 @@ namespace TestProject.MoqClass
                     OpisFilma = "Opis filma 3",
                     YoutubeTrailer = "Youtube trailer 3",
                     Sale = new List<Projekcija>() {
-                        new Projekcija(){ }
+                        new Projekcija(){
+                            ProjekcijaId=1,
+                        },
+                        new Projekcija(){
+                            ProjekcijaId=2,
+                        }
                     }
                 }
             };

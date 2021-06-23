@@ -8,6 +8,7 @@ using Bioskop.Domen;
 using System.Linq;
 using Bioskop.Podaci.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
+using Bioskop.WebApp.Models;
 
 namespace TestProject.SOTests
 {
@@ -57,6 +58,18 @@ namespace TestProject.SOTests
             Assert.AreEqual(exp.NazivSale, actual.NazivSale);
             Assert.AreEqual(exp.BrojKolona, actual.BrojKolona);
             Assert.AreEqual(exp.BrojRedova, actual.BrojRedova);
+
+        }
+
+        [TestMethod]
+        public void Test_SalaCreateMethod() {
+
+            controller = new SalaController(uow.Object);
+            CreateSalaViewModel model = new CreateSalaViewModel();
+
+            var expected = controller.Create(model) as ViewResult;
+
+            Assert.ThrowsException<NullReferenceException>(()=> (Sala)expected.ViewData.Model);
 
         }
 
