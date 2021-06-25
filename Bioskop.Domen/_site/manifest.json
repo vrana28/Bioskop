@@ -1,0 +1,512 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/Djordje/source/repos/BioskopGolub/Bioskop.Domen",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.BioskopContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.BioskopContext.html",
+          "hash": "LDRhTLsI01XmBiV+TafGSWQpT8P1TG9nvOxKwZAzPas="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Film.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Film.html",
+          "hash": "TW8Odvqg/ZqSpxWOWlURlpj23IUWHIEcwGb/dh4tIo8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.IEntity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.IEntity.html",
+          "hash": "0wsSyWF7zznQdHB0pC16QMjlZUQzU9sMSwV20Gd/nWY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Image.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Image.html",
+          "hash": "hpK7qqCHt/sufdVkaCM0pHgfpQHYdpP4Jn5YjWM8O3I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Karta.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Karta.html",
+          "hash": "xreUVxdKBPChGMtjeU5Ae5V0AOYsIFrk37yqz27J3RU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Korisnik.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Korisnik.html",
+          "hash": "ioeyukZcm02wkbbm6p7aQP446uC391NT3aB/SlP4/gk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.KorisnikContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.KorisnikContext.html",
+          "hash": "QLCqSVnjOt3bIp/AUbSRwyAw1qsV8Y2VYJYImuVbYOM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.DodatKrajProjekcije.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.DodatKrajProjekcije.html",
+          "hash": "S8viboBPSwukY51zm+0yldJ3xNxVbbjgzUSQMRaoy0I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.DodatLinkKaYoutube.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.DodatLinkKaYoutube.html",
+          "hash": "VvY7mrTr8G2vCz0IVbt2rquTdVNmDHt0doQXCQ7npvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.DodatOpisFilma.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.DodatOpisFilma.html",
+          "hash": "KwfW9/659Q/29EaCIdUs01pmzRNOm6kNfbkNFjizuyI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.DodatPK.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.DodatPK.html",
+          "hash": "+ZPiKcypUAgahs2vyt83/L7jQmesCPydfoeFHaW79w0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.DodataPutanjaSlike.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.DodataPutanjaSlike.html",
+          "hash": "tD4jqCdzxhmTE/uvo1OJ2qmaV4XFTSAUzhEfqDeDUUA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.DodatiPomocniAtributi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.DodatiPomocniAtributi.html",
+          "hash": "iZOyGHM6BAaL/rOlIiFmpS61D7t6oS/nz0D+/pl3JU4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.DodatoSediste.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.DodatoSediste.html",
+          "hash": "i90oKeeCpDKUMM+2NgqBucOWAB0s8SOpv2kx414GCxs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.IgnoredProperty.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.IgnoredProperty.html",
+          "hash": "tbHBVMJaxr9erkhBfKhCjAQANRU+zvdY6YTDieoMOew="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.Init.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.Init.html",
+          "hash": "bG6NdbvC1dP26CUFUbVXT1cFUh2Mu5dXfRgKFs8g7UQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.Init4.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.Init4.html",
+          "hash": "lpypmVlXVNncvYLSPYFCw941QfKbsSanM8c7uTZ6+9Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.Korisnik.DodatEmail.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.Korisnik.DodatEmail.html",
+          "hash": "4AfcGbyDPxXw0UzYIYfG2zFHG15ePYv2vzBP9NHyn2Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.Korisnik.DodatKorisnik.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.Korisnik.DodatKorisnik.html",
+          "hash": "nKsT3foG8FPSJ7CECj8Gnuufii6zQ3QnNUQGf4gjoFA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.Korisnik.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.Korisnik.html",
+          "hash": "YA00LreCSw55Vr0JOLkYKhOliAqRN3+lU13xTTtdp+Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.PKSamoProjekcija.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.PKSamoProjekcija.html",
+          "hash": "Dr+ux4nl9Bo232JTm+ZdIKaZSyifmKH7aHRCba9zAio="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.Seed.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.Seed.html",
+          "hash": "6OCD97y+IdLwQPovxCvBjlaE27O3yXjtgl5iB6I4vEs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.Seed2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.Seed2.html",
+          "hash": "W/vG3WZp/N5A219V1JLeGrkZo4h6lxW+t3CdOentIKg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Migrations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Migrations.html",
+          "hash": "rGToQ13cgkKW1sd44mU0JilrZVcau7p2vFQmB9KvHRo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Pol.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Pol.html",
+          "hash": "DhF20tlJ1mHWwbtPpgk1wWJx/3Xc5rbVvqKpiIGL9Xs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Projekcija.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Projekcija.html",
+          "hash": "24RtiBn/FIQmp+BcemFZJZdYOgVogeTl9B7xpHodrxQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Sala.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Sala.html",
+          "hash": "rnOmSDKmKA1WeU5YGJ1H8LCvucrO70DIXXI/75kbCIg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Sediste.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Sediste.html",
+          "hash": "/6k3KHRxOEm4gBWFCqowRCqQ+PgI6m4xWzzA9eFZXAs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Validacija.FilmName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Validacija.FilmName.html",
+          "hash": "U6iqS5lEMQ6okRHXF3VIAQP/8faLZdXhcV5zl2h7HkY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Validacija.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Validacija.html",
+          "hash": "URi6iRVRaNRIRsHmUhLZ3DO+aQJcAq2odpi8XPZ/5J0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.Zanr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.Zanr.html",
+          "hash": "Aw2c4T1TRfhgJnIAa8V3I1X+hwm2L1CQi4gvQeuZ9w4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Bioskop.Domen.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Bioskop.Domen.html",
+          "hash": "LjM4o4PLovCrWRFVYwHNdnd+VtHSEwE8s+7DbSg32vY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "6i/B4aauF4I4Eam7Wyer+fGpwPVtyn0MWaxp0nogZF0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "idaeiBvEbI7dnoBVYSxjNIcEGv/ejrhi40/FlgBs0q4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "JejJPpxpr2nfyjff4wDb04CZ32T1j/m2hFn6ScO1jA8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "Cg5/NjJOXUHOoGi2BhmKeU/eEcacjJ8yrEoGnDxnacU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "WSuRrYiGwKKMbtdG9z8W9fXmLoCyTnGg9AxbPKLXm2Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Disable incremental build by force rebuild option.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ForceRebuild"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 32,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: it's disabled.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
