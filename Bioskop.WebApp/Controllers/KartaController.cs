@@ -132,7 +132,7 @@ namespace Bioskop.WebApp.Controllers
                 using (var client = new SmtpClient())
                 {
                     client.Connect("smtp.gmail.com", 587, false);
-                    client.Authenticate("maredjuric155@gmail.com", "Testtest12345");
+                    client.Authenticate("maredjuric155@gmail.com", "pxzpbcvrfwzppfpt");
                     client.Send(message);
                     client.Disconnect(true);
                 }

@@ -199,8 +199,8 @@ namespace Bioskop.WebApp.Controllers
             }
             catch (NullReferenceException ex)
             {
-                ModelState.AddModelError(string.Empty, ex.Message);
-                return View("Create");
+                ModelState.AddModelError(string.Empty, "Zauzeto vreme");
+                return RedirectToAction("Create");
             }
         }
 

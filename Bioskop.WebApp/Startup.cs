@@ -76,7 +76,7 @@ namespace Bioskop.WebApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     // Korisnik, Login
-                    pattern: "{controller=Korisnik}/{action=Login}/{id?}");
+                    pattern: "{controller=Film}/{action=Index}/{id?}");
             });
         }
     }

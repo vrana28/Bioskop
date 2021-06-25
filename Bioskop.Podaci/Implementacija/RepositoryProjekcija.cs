@@ -79,21 +79,25 @@ namespace Bioskop.Podaci.Implementacija
 
         public void DodajProjekcije(List<Projekcija> listProjekcija, List<Projekcija> postojecePROJEKCIJE)
         {
+            foreach (Projekcija p in listProjekcija) {
 
-            foreach (Projekcija pr in listProjekcija)
-            {
-                if (postojecePROJEKCIJE == null)
+                if (postojecePROJEKCIJE.Any(pp => pp.SalaId == p.SalaId))
                 {
-                    context.Projekcija.Add(pr);
+                    List<Projekcija> listaIsteSale = postojecePROJEKCIJE.Where(pp => pp.SalaId == p.SalaId).ToList();
+                    foreach (Projekcija ls in listaIsteSale) {
+                        if ((p.VremeProjekcije >= ls.VremeProjekcije && p.VremeProjekcije <= ls.VremeKrajaProjekcije) ||
+                            (p.VremeKrajaProjekcije >= ls.VremeProjekcije && p.VremeKrajaProjekcije <= ls.VremeKrajaProjekcije)) {
+                            throw new Exception();
+                        }
+                    }
+                    context.Projekcija.Add(p);
+                }
+                else {
+                    context.Projekcija.Add(p);
                 }
 
-             //   else if (!postojecePROJEKCIJE.Any(x => (pr.VremeProjekcije >= x.VremeProjekcije && pr.VremeProjekcije <= x.VremeKrajaProjekcije) ||
-            //     (pr.VremeKrajaProjekcije >= x.VremeProjekcije && pr.VremeKrajaProjekcije <= x.VremeKrajaProjekcije)))
-               else {
-                    context.Projekcija.Add(pr);
-                 }
-
             }
+         
         }
 
         public Projekcija NadjiPoId(int id)
