@@ -6,19 +6,50 @@ using System.Text;
 
 namespace Bioskop.Domen
 {
+    ///<inheritdoc/>
+    /// <summary>
+    /// Represent class for creating database
+    /// </summary>
+    /// <remarks>
+    /// BioskopContext inherit DbContext that allows us to use object relations mapper
+    ///
+    /// <para>Contains DbSet that will create table in database for passed type</para>
+    /// </remarks>
     public class BioskopContext : DbContext
     {
         // pravimo entitete
         // DbSet najznacajnija klasa
+        /// <value>Represent Dbset for Film
+        /// <para>This will create Film as one table in database</para>
+        /// </value>
         public DbSet<Film> Film{ get; set; }
+        /// <value>Represent Dbset for Sala
+        /// <para>This will create Sala as one table in database</para>
+        /// </value>
         public DbSet<Sala> Sala { get; set; }
+        /// <value>Represent Dbset for Projekcija
+        /// <para>This will create Projekcija as one table in database</para>
+        /// </value>
         public DbSet<Projekcija> Projekcija{ get; set; }
+        /// <value>Represent Dbset for Sediste
+        /// <para>This will create Film as one table in database</para>
+        /// </value>
         public DbSet<Sediste> Sediste{ get; set; }
+        /// <value>Represent Dbset for Karta
+        /// <para>This will create Karta as one table in database</para>
+        /// </value>
         public DbSet<Karta> Karta{ get; set; }
+        /// <value>Represent Dbset for Korisnik
+        /// <para>This will create Korisnik as one table in database</para>
+        /// </value>
         public DbSet<Korisnik> Korisnik { get; set; }
 
         public static readonly ILoggerFactory MyLoggerFactory
          = LoggerFactory.Create(builder => { builder.AddConsole(); });
+        /// <summary>
+        /// This will configure server to the database
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Bioskop;");
@@ -27,7 +58,10 @@ namespace Bioskop.Domen
                 .EnableSensitiveDataLogging()
                 .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Bioskop;");
          }
-
+        /// <summary>
+        /// Used for bulding model in database
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Sala>().OwnsMany(s => s.SedistaUSali);
@@ -46,6 +80,10 @@ namespace Bioskop.Domen
         }
         // za postavljanje pocetnih vrednosti podataka u bazi
         // mora ekplicitno da se doda ID
+        /// <summary>
+        /// Seed class for new instance of database.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         private void Seed(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Film>().HasData(
