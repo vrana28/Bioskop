@@ -15,7 +15,7 @@ namespace Bioskop.Domen
     public class Film : IEntity
     {
         /// <value>Represent Film id as int</value> ssss
-        private int FilmId { get; set; }
+        public int FilmId { get; set; }
         [Required]
         [FilmName(ErrorMessage = "Mora da ima minimun 3 karaktera")]
         /// <value>Represent Film name as string</value>

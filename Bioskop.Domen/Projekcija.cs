@@ -21,11 +21,34 @@ namespace Bioskop.Domen
         /// <value>Represent film id as int</value>
         public int FilmId { get; set; }
         /// <value>Represent begin time of projection as dateTime</value>
-        public DateTime VremeProjekcije { get; set; }
+        /// <exception cref="NullReferenceException">Throws when vreme projekcije is null or wrong</exception>
+        private DateTime vremeProjekcije;
+        public DateTime VremeProjekcije {
+            get {return vremeProjekcije; }
+            set { if(value< DateTime.Now | value == null) throw new  NullReferenceException("Lose vreme pocetka projekcije.");
+                vremeProjekcije = value;
+            }
+        }
         /// <value>Represent end time of projection as dateTime</value>
-        public DateTime VremeKrajaProjekcije { get; set; }
+        /// <exception cref="NullReferenceException">Throws when vreme kraja projekcije is null or wrong</exception>
+        private DateTime vremeKrajaProjekcije;
+        public DateTime VremeKrajaProjekcije
+        {
+            get { return vremeKrajaProjekcije; }
+            set
+            {
+                if (value < DateTime.Now | value == null) throw new NullReferenceException("Lose vreme kraja projekcije.");
+                vremeKrajaProjekcije = value;
+            }
+        }
         /// <value>Represent price of chosen projection as double</value>
-        public double  Cena { get; set; }
+        /// <exception cref="NullReferenceException">Throws when cena projekcije is negative.</exception>
+        private double cena;
+        public double  Cena {
+            get { return cena; }
+            set {if(value < 0) throw new ArgumentOutOfRangeException("Cena ne moze biti negativna.");
+                cena = value;    }
+        }
         /// <returns>Returns informations about Projection as string</returns>
         public override string ToString()
         {

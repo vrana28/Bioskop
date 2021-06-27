@@ -22,6 +22,12 @@ namespace Bioskop.Domen
         /// <value>Represent hall id as int</value>
         public int ProjekcijaId{ get; set; }
         /// <value>Represent row/column combination as string</value>
-        public string RedKolona{ get; set; }
+        /// <exception cref="NullReferenceException">Throws when naziv of film is null or empty</exception>
+        private string redKolona;
+        public string RedKolona{
+            get {return redKolona; }
+            set { if(string.IsNullOrEmpty(value)) throw new NullReferenceException("Red kolona ne moze biti null.");
+                redKolona = value;    }
+        }
     }
 }

@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "C:/Users/Djordje/source/repos/BioskopGolub/Bioskop.Domen",
+  "source_base_path": "C:/Users/Djordje/source/repos/Bioskop/vrana28/Bioskop/Bioskop.Domen",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.BioskopContext.html",
-          "hash": "LDRhTLsI01XmBiV+TafGSWQpT8P1TG9nvOxKwZAzPas="
+          "hash": "c+ysVMyKCppHY4D71Ac14JeOKON71LSmR68IIAjxIzE="
         }
       },
       "is_incremental": false,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Film.html",
-          "hash": "TW8Odvqg/ZqSpxWOWlURlpj23IUWHIEcwGb/dh4tIo8="
+          "hash": "/kDu7gKdH2B16xxKOr/Scg6zcDGVSaOLVmC73HXAbGk="
         }
       },
       "is_incremental": false,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.IEntity.html",
-          "hash": "0wsSyWF7zznQdHB0pC16QMjlZUQzU9sMSwV20Gd/nWY="
+          "hash": "oJlKvj9c3/ogRqE9D+szfwF0yZ5WUez6e14TB1Ml5ZI="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Image.html",
-          "hash": "hpK7qqCHt/sufdVkaCM0pHgfpQHYdpP4Jn5YjWM8O3I="
+          "hash": "plnN2lASVAxY+MvAp6inC+IerO4+PUVJt7/tP0VArT0="
         }
       },
       "is_incremental": false,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Karta.html",
-          "hash": "xreUVxdKBPChGMtjeU5Ae5V0AOYsIFrk37yqz27J3RU="
+          "hash": "8WdvsWh/PZ0W0ZooZYrcvYHPBWfNP2RIH7DKk1cKHJI="
         }
       },
       "is_incremental": false,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Korisnik.html",
-          "hash": "ioeyukZcm02wkbbm6p7aQP446uC391NT3aB/SlP4/gk="
+          "hash": "X5o0I4XDglOc9eLhPjGFy4S+z63r56HsUDh8P+adUw8="
         }
       },
       "is_incremental": false,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.KorisnikContext.html",
-          "hash": "QLCqSVnjOt3bIp/AUbSRwyAw1qsV8Y2VYJYImuVbYOM="
+          "hash": "SCF2ZxIMGbKcBuvw/UUZ2cVWwrZsGpZfQwo2WSreYEE="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.DodatKrajProjekcije.html",
-          "hash": "S8viboBPSwukY51zm+0yldJ3xNxVbbjgzUSQMRaoy0I="
+          "hash": "YjT2gRnOeAQA1JD7UZAntyA+jekIYnyOJPhnVIWNSic="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.DodatLinkKaYoutube.html",
-          "hash": "VvY7mrTr8G2vCz0IVbt2rquTdVNmDHt0doQXCQ7npvs="
+          "hash": "NVelr0VTNO2J71FNgFB07CRW0J8IMItzUzEqEUYXcpY="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.DodatOpisFilma.html",
-          "hash": "KwfW9/659Q/29EaCIdUs01pmzRNOm6kNfbkNFjizuyI="
+          "hash": "Fv7iden6gEnnzAIYwzWBU4dGZw/YSd92OYi5U3XZgJI="
         }
       },
       "is_incremental": false,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.DodatPK.html",
-          "hash": "+ZPiKcypUAgahs2vyt83/L7jQmesCPydfoeFHaW79w0="
+          "hash": "KHK9EWjcT+rDFE8dCwvDO8HkAN7RLoZpnqIcTU/ivME="
         }
       },
       "is_incremental": false,
@@ -141,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.DodataPutanjaSlike.html",
-          "hash": "tD4jqCdzxhmTE/uvo1OJ2qmaV4XFTSAUzhEfqDeDUUA="
+          "hash": "N9rUWDFjAwFZUHce5klWUdUyKPYftjXfmZI+IAD3PNw="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.DodatiPomocniAtributi.html",
-          "hash": "iZOyGHM6BAaL/rOlIiFmpS61D7t6oS/nz0D+/pl3JU4="
+          "hash": "ckZ9H5YJqqSpAS/GiKg71DhdZ1n1Rgcj7LA1sCiqGoo="
         }
       },
       "is_incremental": false,
@@ -165,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.DodatoSediste.html",
-          "hash": "i90oKeeCpDKUMM+2NgqBucOWAB0s8SOpv2kx414GCxs="
+          "hash": "ym2ASrycHNQepjP6PrK//nmmcNn2WFBI9l4dCsU++b4="
         }
       },
       "is_incremental": false,
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.IgnoredProperty.html",
-          "hash": "tbHBVMJaxr9erkhBfKhCjAQANRU+zvdY6YTDieoMOew="
+          "hash": "mwslFBFyKMROWsqVCYaxPU3oDXWifg+efwcs8595SVo="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.Init.html",
-          "hash": "bG6NdbvC1dP26CUFUbVXT1cFUh2Mu5dXfRgKFs8g7UQ="
+          "hash": "Gv/vubIe1nxSkXP5S1ax4VDmPpn7hTGnbPUF6xz00H8="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.Init4.html",
-          "hash": "lpypmVlXVNncvYLSPYFCw941QfKbsSanM8c7uTZ6+9Q="
+          "hash": "89JyVQwFYGwRGVslvPRyk9/to1tR9sE8YeRvGf83TFg="
         }
       },
       "is_incremental": false,
@@ -213,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.Korisnik.DodatEmail.html",
-          "hash": "4AfcGbyDPxXw0UzYIYfG2zFHG15ePYv2vzBP9NHyn2Y="
+          "hash": "73W2+TZihMdjRFFIphOagawoSTaARruU/DZUbho+F9I="
         }
       },
       "is_incremental": false,
@@ -225,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.Korisnik.DodatKorisnik.html",
-          "hash": "nKsT3foG8FPSJ7CECj8Gnuufii6zQ3QnNUQGf4gjoFA="
+          "hash": "sNlLfGZ78e4OxS/mOVTaOuRkmRhdyVZk3zjGoVc/P3Y="
         }
       },
       "is_incremental": false,
@@ -249,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.PKSamoProjekcija.html",
-          "hash": "Dr+ux4nl9Bo232JTm+ZdIKaZSyifmKH7aHRCba9zAio="
+          "hash": "7sMin0QWoMpFqUuSdCkRqWw2g0fZxawBKcnUqUjGkJM="
         }
       },
       "is_incremental": false,
@@ -261,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.Seed.html",
-          "hash": "6OCD97y+IdLwQPovxCvBjlaE27O3yXjtgl5iB6I4vEs="
+          "hash": "13Tkp65ywVw7ICkAcaqzsUv8fB3T3C8XKtppiEV+xng="
         }
       },
       "is_incremental": false,
@@ -273,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Migrations.Seed2.html",
-          "hash": "W/vG3WZp/N5A219V1JLeGrkZo4h6lxW+t3CdOentIKg="
+          "hash": "lU1+M6FpZh5N6k3w3xJuNYn/YS+Ea1eXxZZxmR2Qjew="
         }
       },
       "is_incremental": false,
@@ -297,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Pol.html",
-          "hash": "DhF20tlJ1mHWwbtPpgk1wWJx/3Xc5rbVvqKpiIGL9Xs="
+          "hash": "cBy6Oro07Zi+eamSWnScOohosAlnHiPgKVAiVidS5Lw="
         }
       },
       "is_incremental": false,
@@ -309,7 +309,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Projekcija.html",
-          "hash": "24RtiBn/FIQmp+BcemFZJZdYOgVogeTl9B7xpHodrxQ="
+          "hash": "l7uh6WPY3MxBMI/9RAXddguoSnADesC+QOvrf7JeI+4="
         }
       },
       "is_incremental": false,
@@ -321,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Sala.html",
-          "hash": "rnOmSDKmKA1WeU5YGJ1H8LCvucrO70DIXXI/75kbCIg="
+          "hash": "8dY13mwVfHcT75C9n0sKvMg2DXQeUbwOdP3N/8QKGSE="
         }
       },
       "is_incremental": false,
@@ -333,7 +333,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Sediste.html",
-          "hash": "/6k3KHRxOEm4gBWFCqowRCqQ+PgI6m4xWzzA9eFZXAs="
+          "hash": "Sw2fSExbo2DpBByL4gQa+jGvfwqbHIquiYPgpH/ame4="
         }
       },
       "is_incremental": false,
@@ -345,7 +345,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Validacija.FilmName.html",
-          "hash": "U6iqS5lEMQ6okRHXF3VIAQP/8faLZdXhcV5zl2h7HkY="
+          "hash": "gSPGi08MsSP6mMbUwApQXeTR492Le/KZ87FNbs2u09g="
         }
       },
       "is_incremental": false,
@@ -369,7 +369,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Bioskop.Domen.Zanr.html",
-          "hash": "Aw2c4T1TRfhgJnIAa8V3I1X+hwm2L1CQi4gvQeuZ9w4="
+          "hash": "69AmJCrWAx1rxIlajNMm/5ljm7p/NkRs/WfYI3qKmdo="
         }
       },
       "is_incremental": false,
@@ -393,7 +393,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "6i/B4aauF4I4Eam7Wyer+fGpwPVtyn0MWaxp0nogZF0="
+          "hash": "clOqZRZ3+r11SSOioY7Qf63ZpKADU9SHPbE7rHPWV1U="
         }
       },
       "is_incremental": false,
@@ -417,7 +417,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "JejJPpxpr2nfyjff4wDb04CZ32T1j/m2hFn6ScO1jA8="
+          "hash": "InujHKjOAu07k3KqgNkvRD8eYhqky29txGLmrpezkVo="
         }
       },
       "is_incremental": false,
@@ -441,7 +441,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "Cg5/NjJOXUHOoGi2BhmKeU/eEcacjJ8yrEoGnDxnacU="
+          "hash": "P56m0iNfs5oCczwG75vj3JMAh2l2I/3M8BBEccBpy24="
         }
       },
       "is_incremental": false,
