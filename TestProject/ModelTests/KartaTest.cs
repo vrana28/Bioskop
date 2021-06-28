@@ -16,96 +16,13 @@ namespace TestProject.ModelTests
         }
 
         [TestMethod]
-        public void Test_KartaNull() {
-            karta = null;
-            Assert.ThrowsException<NullReferenceException>(() => karta.RedKolona);
+        public void Test_KartaRedKolonaException()
+        {
+            Assert.ThrowsException<NullReferenceException>(() => karta.RedKolona = "");
+            Assert.ThrowsException<NullReferenceException>(() => karta.RedKolona = null);
         }
 
-        [TestMethod]
-        public void Test_KartaNotNull() {
-            karta = new Karta();
-            Assert.IsNotNull(karta);
-        }
-
-        [TestMethod]
-        public void Test_KartaKorisnik() {
-            karta = new Karta
-            {
-                KartaId = 1,
-                Korisnik = new Korisnik(),
-                KorisnikId = 2,
-                Projekcija = new Projekcija(),
-                ProjekcijaId = 1,
-                 RedKolona = "A3"
-            };
-            Assert.IsNotNull(karta.Korisnik);
-        }
-
-        [TestMethod]
-        public void Test_KartaRedKolona() {
-            karta = new Karta
-            {
-                KartaId = 1,
-                Korisnik = new Korisnik(),
-                KorisnikId = 2,
-                Projekcija = new Projekcija(),
-                ProjekcijaId = 1,
-                RedKolona = "A3"
-            };
-            int num = karta.RedKolona.Length;
-            Assert.IsNotNull(karta);
-            Assert.AreEqual(num, 2);
-        }
-
-        [TestMethod]
-        public void Test_KartaProjekcijaIdNotNegative() {
-            
-            karta = new Karta
-            {
-                KartaId = 1,
-                Korisnik = new Korisnik(),
-                KorisnikId = 2,
-                Projekcija = new Projekcija(),
-                ProjekcijaId = 1,
-                RedKolona = "A3"
-            };
-            Assert.IsNotNull(karta);
-            Assert.IsTrue(karta.ProjekcijaId > 0);
-        }
-
-        [TestMethod]
-        public void Test_KartaKorisnikIdNotNegative() {
-
-            karta = new Karta
-            {
-                KartaId = 1,
-                Korisnik = new Korisnik(),
-                KorisnikId = 2,
-                Projekcija = new Projekcija(),
-                ProjekcijaId = 1,
-                RedKolona = "A3"
-            };
-
-            Assert.IsNotNull(karta);
-            Assert.IsTrue(karta.KorisnikId > 0);
-        }
-
-        [TestMethod]
-        public void Test_KartaRedKolonaValid() {
-
-            karta = new Karta
-            {
-                KartaId = 1,
-                Korisnik = new Korisnik(),
-                KorisnikId = 2,
-                Projekcija = new Projekcija(),
-                ProjekcijaId = 1,
-                RedKolona = "A3"
-            };
-
-            Assert.ThrowsException<FormatException>(() => int.Parse(karta.RedKolona));
-
-        }
+        
 
     }
 }

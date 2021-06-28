@@ -1,6 +1,8 @@
-﻿using System;
+﻿using EShop.Model.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Bioskop.Domen
 {
@@ -32,7 +34,7 @@ namespace Bioskop.Domen
         private Pol pol;
         public Pol Pol{
             get { return pol; }
-            set { if(!Enum.IsDefined(typeof(Pol),value)) throw new NullReferenceException("Pol ima null vrednost");
+            set { if(Enum.IsDefined(typeof(Pol),value)) throw new NullReferenceException("Pol ima null vrednost");
                 pol = value;
             } 
         }
@@ -54,7 +56,14 @@ namespace Bioskop.Domen
             get { return password; }
             set
             {
-                if (string.IsNullOrEmpty(value)) throw new NullReferenceException("Password ima null vrednost");
+                if (string.IsNullOrEmpty(value))
+                    throw new NullReferenceException("Email cannot be empty or null");
+
+                Regex regex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
+                Match match = regex.Match(value);
+                if (!match.Success)
+                    throw new PasswordException("Wrong password format!");
+
                 password = value;
             }
         }
@@ -66,7 +75,14 @@ namespace Bioskop.Domen
             get { return email; }
             set
             {
-                if (string.IsNullOrEmpty(value)) throw new NullReferenceException("Email ima null vrednost");
+                if (string.IsNullOrEmpty(value))
+                    throw new NullReferenceException("Email cannot be empty or null");
+                ///^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/
+                Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                Match match = regex.Match(value);
+                if (!match.Success)
+                    throw new EmailException("Wrong email format!");
+
                 email = value;
             }
         }

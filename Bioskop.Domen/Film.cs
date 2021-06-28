@@ -44,17 +44,17 @@ namespace Bioskop.Domen
         public Zanr Zanr
         {
             get { return zanr; }
-            set {if(!Enum.IsDefined(typeof(Zanr), value)) throw new NullReferenceException("Zanr ima null vrednost.");
+            set {if(Enum.IsDefined(typeof(Zanr), value)) throw new NullReferenceException("Zanr ima null vrednost.");
                 zanr = value;
             }
         }
 
         /// <value>Represent Film duration as int</value>
-        ///<exception cref="ArgumentOutOfRangeException">Throws when trajanje is null or empty</exception>
+        ///<exception cref="ArgumentOutOfRangeException">Throws when trajanje is negative or zero</exception>
         private int trajanje;
         public int Trajanje {
             get { return trajanje; }
-            set { if (value < 0) throw new ArgumentOutOfRangeException("Trajanje filma ne moze biti negativno");
+            set { if (value <= 0) throw new ArgumentOutOfRangeException("Trajanje filma ne moze biti negativno.");
                 trajanje = value;
             }
         }
@@ -64,7 +64,7 @@ namespace Bioskop.Domen
         public int Godina {
             get { return godina; }
             set { if (value < 1900) throw new ArgumentOutOfRangeException("Godina filma ne moze biti manja od 1900-te godine.");
-                trajanje = godina;                    }
+                godina = value;                    }
         }
         /// <value>Represent Film poster as string</value>
         /// <exception cref="ArgumentOutOfRangeException">Throws when putanja postera is null or empty</exception>

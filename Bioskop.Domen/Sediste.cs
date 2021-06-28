@@ -26,7 +26,7 @@ namespace Bioskop.Domen
         private int kolona;
         public int Kolona {
             get {return kolona; }
-            set {if(value <0) throw new ArgumentOutOfRangeException("Red ima negativnu vrednost.");
+            set {if(value <=0) throw new ArgumentOutOfRangeException("Red ima negativnu vrednost.");
                 kolona = value;
             }
         }

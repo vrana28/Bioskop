@@ -12,105 +12,37 @@ namespace TestProject.ModelTests
 
         private Sala sala;
 
+        [TestInitialize]
         public void Initialize() {
             sala = new Sala();
         }
 
         [TestMethod]
-        public void Test_SalaNull() {
-            sala = null;
-            Assert.ThrowsException<NullReferenceException>(() => sala.NazivSale);
+        public void Test_SalaNazivException() {
+            Assert.ThrowsException<NullReferenceException>(() => sala.NazivSale = "");
+            Assert.ThrowsException<NullReferenceException>(() => sala.NazivSale = null);
         }
 
         [TestMethod]
-        public void Test_SalaNotNull() {
-            sala = new Sala();
-            Assert.IsNotNull(sala);
-        }
-
-        [TestMethod]
-        public void Test_SalaNazivString() {
-
-            sala = new Sala
-            {
-                SalaId = 1,
-                NazivSale = "Nova Sala",
-                SedistaUSali = new List<Sediste>(),
-                Filmovi = new List<Projekcija>(),
-                BrojRedova = 12, 
-                BrojKolona = 11,
-            };
-
-            Assert.IsNotNull(sala);
-            Assert.AreEqual("Nova Sala", sala.NazivSale);
-            
-        }
-
-        [TestMethod]
-        public void Test_SalaBrojKolona() {
-            sala = new Sala
-            {
-                SalaId = 1,
-                NazivSale = "Nova Sala",
-                SedistaUSali = new List<Sediste>(),
-                Filmovi = new List<Projekcija>(),
-                BrojRedova = 12,
-                BrojKolona = 11,
-            };
-            Assert.IsNotNull(sala);
-            Assert.IsTrue(sala.BrojKolona > 0);
-
-        }
-
-        [TestMethod]
-        public void Test_SalaBrojRedova()
+        public void Test_SalaKolonaException()
         {
-            sala = new Sala
-            {
-                SalaId = 1,
-                NazivSale = "Nova Sala",
-                SedistaUSali = new List<Sediste>(),
-                Filmovi = new List<Projekcija>(),
-                BrojRedova = 12,
-                BrojKolona = 11,
-            };
-            Assert.IsNotNull(sala);
-            Assert.IsTrue(sala.BrojRedova > 0);
-
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => sala.BrojKolona = 0);
         }
 
         [TestMethod]
-        public void Test_SalaSedista()
+        [DataRow(-15)]
+        [DataRow(0)]
+        public void Test_SalaKolonaParametrizovanException(int kol)
         {
-            sala = new Sala
-            {
-                SalaId = 1,
-                NazivSale = "Nova Sala",
-                SedistaUSali = new List<Sediste>(),
-                Filmovi = new List<Projekcija>(),
-                BrojRedova = 12,
-                BrojKolona = 11,
-            };
-            Assert.IsNotNull(sala);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => sala.SedistaUSali[1].Red);
-
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => sala.BrojKolona = kol);
         }
 
         [TestMethod]
-        public void Test_SalaProjekcije()
+        [DataRow(-12)]
+        [DataRow(0)]
+        public void Test_SalaRedParametrizovanException(int red)
         {
-            sala = new Sala
-            {
-                SalaId = 1,
-                NazivSale = "Nova Sala",
-                SedistaUSali = new List<Sediste>(),
-                Filmovi = new List<Projekcija>(),
-                BrojRedova = 12,
-                BrojKolona = 11,
-            };
-            Assert.IsNotNull(sala);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => sala.Filmovi[1].VremeProjekcije);
-
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => sala.BrojRedova = red);
         }
 
     }

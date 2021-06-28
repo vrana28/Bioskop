@@ -36,7 +36,7 @@ namespace Bioskop.Domen
         [DisplayName("Broj redova")]
         public int BrojRedova {
             get { return brojRedova; }
-            set { if(value< 0 ) throw new ArgumentOutOfRangeException("Broj redova ne moze biti negativan.");
+            set { if(value <= 0 ) throw new ArgumentOutOfRangeException("Broj redova ne moze biti negativan.");
                 brojRedova = value;
             }
         }
@@ -48,7 +48,7 @@ namespace Bioskop.Domen
             get { return brojKolona; }
             set
             {
-                if (value < 0) throw new ArgumentOutOfRangeException("Broj redova ne moze biti negativan.");
+                if (value <= 0) throw new ArgumentOutOfRangeException("Broj redova ne moze biti negativan.");
                 brojKolona = value;
             }
         }

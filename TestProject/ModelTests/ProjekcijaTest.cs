@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Bioskop.Domen;
+using EShop.Model.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestProject.ModelTests
@@ -12,93 +13,52 @@ namespace TestProject.ModelTests
 
         private Projekcija projekcija;
 
+        [TestInitialize]
         public void Initialize() {
             projekcija = new Projekcija();
         }
 
         [TestMethod]
-        public void Test_ProjekcijaNull() {
-            projekcija = null;
-            Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeProjekcije);
+        public void Test_ProjekcijaPocetakProjekcijeException() {
+            Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeKrajaProjekcije = DateTime.Now);
         }
 
         [TestMethod]
-        public void Test_ProjekcijaNotNull() {
-            projekcija = new Projekcija();
-            Assert.IsNotNull(projekcija);
-        }
-
-        [TestMethod]
-        public void Test_ProjekcijaId() {
-
-            projekcija = new Projekcija {
-                ProjekcijaId = 1,
-                Sala = new Sala(),
-                SalaId = 1,
-                Film = new Film(),
-                FilmId = 1,
-                VremeProjekcije = new DateTime(2021,05,12,8,30,0),
-                VremeKrajaProjekcije = new DateTime(2021, 05, 12, 9, 30, 0),
-                Cena = 200
-            };
-
-            Assert.IsTrue(projekcija.ProjekcijaId > 0);
-        }
-
-        [TestMethod]
-        public void Test_ProjekcijaSalaNull() {
-
-            projekcija = new Projekcija
-            {
-                ProjekcijaId = 1,               
-                Film = new Film(),
-                FilmId = 1,
-                VremeProjekcije = new DateTime(2021, 05, 12, 8, 30, 0),
-                VremeKrajaProjekcije = new DateTime(2021, 05, 12, 9, 30, 0),
-                Cena = 200
-            };
-
-            Assert.IsNotNull(projekcija);
-            Assert.ThrowsException<NullReferenceException>(() => projekcija.Sala.NazivSale);
-
-        }
-
-        [TestMethod]
-        public void Test_VremeProjekcije() {
-
-            projekcija = new Projekcija
-            {
-                ProjekcijaId = 1,
-                Sala = new Sala(),
-                SalaId = 1,
-                Film = new Film(),
-                FilmId = 1,
-                VremeProjekcije = new DateTime(2021, 05, 12, 8, 30, 0),
-                VremeKrajaProjekcije = new DateTime(2021, 05, 12, 9, 30, 0),
-                Cena = 200
-            };
-
-            Assert.IsNotNull(projekcija);
-            Assert.IsTrue(projekcija.VremeKrajaProjekcije > projekcija.VremeProjekcije);
-        }
-        
-        [TestMethod]
-        public void Test_ProjekcijaVremeNotEqual ()
+        public void Test_ProjekcijaKrajProjekcijeException()
         {
-            projekcija = new Projekcija
-            {
-                ProjekcijaId = 1,
-                Sala = new Sala(),
-                SalaId = 1,
-                Film = new Film(),
-                FilmId = 1,
-                VremeProjekcije = new DateTime(2021, 05, 12, 8, 30, 0),
-                VremeKrajaProjekcije = new DateTime(2021, 05, 12, 9, 30, 0),
-                Cena = 200.5
-            };
-            Assert.IsNotNull(projekcija);
-            Assert.AreNotEqual(projekcija.VremeProjekcije, projekcija.VremeKrajaProjekcije);
+            Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeKrajaProjekcije = DateTime.Now);
         }
+
+        [TestMethod]
+        [DataRow("01/03/2008 07:00:00")]
+
+        public void Test_ProjekcijaPocetakException(string pocetak) {
+            Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeProjekcije = DateTime.Parse(pocetak));
+        }
+
+        [TestMethod]
+        [DataRow("01/03/2008 07:00:00")]
+        public void Test_ProjekcijaKrajException(string kraj)
+        {
+            Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeKrajaProjekcije = DateTime.Parse(kraj));
+        }
+
+        //[TestMethod]
+        //[DataRow("07/01/2021 07:00:00")]
+        //public void Test_ProjekcijaKrajPocetak(string kraj) {
+        //    DateTime pocetak = new DateTime(2021, 7, 5, 7, 0, 0);
+        //    Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeProjekcije = pocetak);
+        //    Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeKrajaProjekcije = DateTime.Parse(kraj));
+        //    Assert.ThrowsException<ProjekcijaException>(() => projekcija.VremeKrajaProjekcije = DateTime.Parse(kraj));
+        //}
+
+        [TestMethod]
+        public void Test_ProjekcijaCenaException()
+        {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => projekcija.Cena = -1.5);
+        }
+
+
 
 
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Bioskop.Domen;
+using EShop.Model.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestProject.ModelTests
@@ -17,104 +18,57 @@ namespace TestProject.ModelTests
         }
 
         [TestMethod]
-        public void Test_KorisnikNull() {
-            korisnik = null;
-            Assert.ThrowsException<NullReferenceException>(() => korisnik.Ime);
+        public void Test_KorisnikImeException() {
+            Assert.ThrowsException<NullReferenceException>(() => korisnik.Ime = "");
+            Assert.ThrowsException<NullReferenceException>(() => korisnik.Ime = null);
         }
 
         [TestMethod]
-        public void Test_KorisnikType() {
-            korisnik = new Korisnik
-            {
-                KorisnikId = 1,
-                Ime = "Pera",
-                Prezime = "Peric",
-                Pol = Pol.Muški,
-                Username = "peki",
-                Email = "pera@gmail.com",
-                Password = "pera1234",
-            };
-
-            Assert.AreEqual(korisnik.Ime, "Pera");
+        public void Test_KorisnikPrezimeException()
+        {
+            Assert.ThrowsException<NullReferenceException>(() => korisnik.Prezime = "");
+            Assert.ThrowsException<NullReferenceException>(() => korisnik.Prezime = null);
+        }
+        [TestMethod]
+        public void Test_KorisnikUsernameException()
+        {
+            Assert.ThrowsException<NullReferenceException>(() => korisnik.Username = "");
+            Assert.ThrowsException<NullReferenceException>(() => korisnik.Username = null);
         }
 
         [TestMethod]
-        public void Test_PrezimeString() {
-            korisnik = new Korisnik
-            {
-                KorisnikId = 1,
-                Ime = "Pera",
-                Prezime = "p",
-                Pol = Pol.Muški,
-                Username = "peki",
-                Email = "pera@gmail.com",
-                Password = "pera1234",
-            };
-            int num = korisnik.Prezime.Length;
-            Assert.AreEqual(num, korisnik.Prezime.Length);
+        [DataRow(null)]
+        public void Test_KorisnikPolException(Pol p)
+        {
+            Assert.ThrowsException<NullReferenceException>(() => korisnik.Pol = p);
         }
 
         [TestMethod]
-        public void Test_UsernameContains() {
-            korisnik = new Korisnik
-            {
-                KorisnikId = 1,
-                Ime = "Pera",
-                Prezime = "p",
-                Pol = Pol.Muški,
-                Username = "peki",
-                Email = "pera@gmail.com",
-                Password = "pera1234",
-            };
-            Assert.IsNotNull(korisnik);
-            Assert.IsTrue(korisnik.Email.Contains("@"));
+        [DataRow("mare@gmail")]
+        [DataRow("mare@gmail.c")]
+        [DataRow("mare")]
+        public void Test_KorisnikEmailExcepion(string email)
+        {
+            Assert.ThrowsException<EmailException>(() => korisnik.Email = email);
         }
 
         [TestMethod]
-        public void Test_KorisnikId() {
-            korisnik = new Korisnik
-            {
-                KorisnikId = 1,
-                Ime = "Pera",
-                Prezime = "Peric",
-                Pol = Pol.Muški,
-                Username = "peki",
-                Email = "pera@gmail.com",
-                Password = "pera1234",
-            };
-            Assert.IsNotNull(korisnik);
-            Assert.IsTrue(korisnik.KorisnikId > 0);
+        [DataRow("Mia3@")]
+        [DataRow("Mia32121")]
+        [DataRow("33313qaas@")]
+        [DataRow("MQQQ@@")]
+        public void Test_KorisnikPasswordExcepion(string password)
+        {
+            Assert.ThrowsException<PasswordException>(() => korisnik.Password = password);
         }
 
         [TestMethod]
-        public void Test_KorisnikPassword() {
-            korisnik = new Korisnik
-            {
-                KorisnikId = 1,
-                Ime = "Pera",
-                Prezime = "Peric",
-                Pol = Pol.Muški,
-                Username = "peki",
-                Email = "pera@gmail.com",
-                Password = "pera1234",
-            };
-            Assert.ThrowsException<FormatException>(() => int.Parse(korisnik.Password));
-        }
-
-        [TestMethod]
-        public void Test_KorisnikEmail() {
-            korisnik = new Korisnik
-            {
-                KorisnikId = 1,
-                Ime = "Pera",
-                Prezime = "Peric",
-                Pol = Pol.Muški,
-                Username = "peki",
-                Email = "pera@gmail.com",
-                Password = "pera1234",
-            };
-            Assert.IsNotNull(korisnik);
-            Assert.IsTrue(korisnik.Email.Contains("."));
+        [DataRow("Nikola98@.")]
+        [DataRow("Nikola98!.")]
+        public void Test_KorisnikPasswordRegex(string password)
+        {
+            korisnik.Password = password;
+            Assert.AreEqual(korisnik.Password, password);
         }
 
     }

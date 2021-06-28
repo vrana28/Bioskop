@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EShop.Model.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -25,28 +26,31 @@ namespace Bioskop.Domen
         private DateTime vremeProjekcije;
         public DateTime VremeProjekcije {
             get {return vremeProjekcije; }
-            set { if(value< DateTime.Now | value == null) throw new  NullReferenceException("Lose vreme pocetka projekcije.");
+            set { if(value <= DateTime.Now || value == null) throw new  NullReferenceException("Lose vreme pocetka projekcije.");
                 vremeProjekcije = value;
             }
         }
         /// <value>Represent end time of projection as dateTime</value>
         /// <exception cref="NullReferenceException">Throws when vreme kraja projekcije is null or wrong</exception>
+        /// <exception cref="ProjekcijaException">Throws when vreme kraja projekcije is before vreme projekcije</exception>
         private DateTime vremeKrajaProjekcije;
         public DateTime VremeKrajaProjekcije
         {
             get { return vremeKrajaProjekcije; }
             set
             {
-                if (value < DateTime.Now | value == null) throw new NullReferenceException("Lose vreme kraja projekcije.");
+                if (value <= DateTime.Now || value == null) throw new NullReferenceException("Lose vreme kraja projekcije.");
+                if (value <= vremeProjekcije) throw new ProjekcijaException("Ne moze kraj preojkcije da bude ranije od pocetka.");
                 vremeKrajaProjekcije = value;
             }
         }
         /// <value>Represent price of chosen projection as double</value>
-        /// <exception cref="NullReferenceException">Throws when cena projekcije is negative.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Throws when cena projekcije is negative.</exception>
         private double cena;
         public double  Cena {
             get { return cena; }
-            set {if(value < 0) throw new ArgumentOutOfRangeException("Cena ne moze biti negativna.");
+            set {
+                if(value <= 0) throw new ArgumentOutOfRangeException("Cena ne moze biti negativna.");
                 cena = value;    }
         }
         /// <returns>Returns informations about Projection as string</returns>

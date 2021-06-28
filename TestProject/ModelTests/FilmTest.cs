@@ -17,101 +17,38 @@ namespace TestProject.ModelTests
         }
 
         [TestMethod]
-        public void Test_FilmNull() {
-            film = null;
-            Assert.ThrowsException<NullReferenceException>(() => film.PutanjaBackPostera);
+        public void Test_FilmNameException()
+        {
+            Assert.ThrowsException<NullReferenceException>(() => film.Naziv = "");
+            Assert.ThrowsException<NullReferenceException>(() => film.Naziv = null);
         }
 
         [TestMethod]
-        public void Test_FilmNazivReziser() {
-            film = new Film
-            {Naziv = "Nar",
-            Reziser = "Marko",
-            Zanr = Zanr.Akcija,
-            Trajanje = 123,
-            Godina = 2020,
-            };
-            Assert.IsNotNull(film);
-            Assert.AreEqual("Nar", film.Naziv);
-            Assert.AreEqual("Marko", film.Reziser);
+        public void Test_FilmReziserException()
+        {
+            Assert.ThrowsException<NullReferenceException>(() => film.Reziser = "");
+            Assert.ThrowsException<NullReferenceException>(() => film.Reziser = null);
         }
 
         [TestMethod]
-        public void Test_FilmNazivString() {
-            film = new Film
-            {
-                Naziv = "N",
-                Reziser = "Marko",
-                Zanr = Zanr.Akcija,
-                Trajanje = 123,
-                Godina = 2020,
-            };
-            int num = film.Naziv.Length;
-            Assert.IsNotNull(film);
-            Assert.AreEqual(1,num);
+        [DataRow(0)]
+        [DataRow(-5)]
+        [DataRow(1850)]
+        public void Test_FilmGodinaException(int godina) {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => film.Godina = godina);
         }
 
         [TestMethod]
-        public void Test_FilmGodina() {
-            film = new Film
-            {
-                Naziv = "N",
-                Reziser = "Marko",
-                Zanr = Zanr.Akcija,
-                Trajanje = 123,
-                Godina = 2020,
-            };
-            int num = film.Godina.ToString().Length;
-            Assert.IsNotNull(film);
-            Assert.AreEqual(4, num);
+        [DataRow(0)]
+        [DataRow(-5)]
+        public void Test_FilmTrajanjeException(int trajanje) {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => film.Trajanje = trajanje);
         }
 
         [TestMethod]
-        public void Test_FilmOpis() {
-            film = new Film
-            {
-                Naziv = "N",
-                Reziser = "Marko",
-                Zanr = Zanr.Akcija,
-                Trajanje = 123,
-                Godina = 2020,
-                OpisFilma = "Ovo je opis."
-            };
-
-            Assert.IsNotNull(film);
-            Assert.IsTrue(film.OpisFilma.Length < 20);
-        }
-
-        [TestMethod]
-        public void Test_FilmTrailer() {
-            film = new Film
-            {
-                Naziv = "Nar",
-                Reziser = "Marko",
-                Zanr = Zanr.Akcija,
-                Trajanje = 123,
-                Godina = 2020,
-                OpisFilma = "Ovo je opis.",
-                YoutubeTrailer = "https://www.youtube.com/watch?v=2Ld0IfAfqPc"
-            };
-
-            Assert.IsNotNull(film);
-            Assert.IsTrue(film.YoutubeTrailer.Contains("youtube"));
-        }
-
-        [TestMethod]
-        public void Test_FilmProjekcija() {
-            film = new Film
-            {
-                Naziv = "Nar",
-                Reziser = "Marko",
-                Zanr = Zanr.Akcija,
-                Trajanje = 123,
-                Godina = 2020,
-                OpisFilma = "Ovo je opis.",
-                YoutubeTrailer = "https://www.youtube.com/watch?v=2Ld0IfAfqPc"
-            };
-            Assert.ThrowsException<NullReferenceException>(() => film.Sale[1]);
+        [DataRow(null)]
+        public void Test_FilmZanrException(Zanr p) {
+            Assert.ThrowsException<NullReferenceException>(() => film.Zanr = p);
         }
 
     }

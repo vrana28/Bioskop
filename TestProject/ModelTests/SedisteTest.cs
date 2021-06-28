@@ -12,89 +12,33 @@ namespace TestProject.ModelTests
     {
         private Sediste sediste;
 
+        [TestInitialize]
         public void Initialize()
         {
             sediste = new Sediste();
         }
 
         [TestMethod]
-        public void Test_SedisteNull()
+        public void Test_SedisteRedException()
         {
-            sediste= null;
-            Assert.ThrowsException<NullReferenceException>(() => sediste.SlobodnoSediste);
+            Assert.ThrowsException<NullReferenceException>(() => sediste.Red =' ');
         }
 
         [TestMethod]
-        public void Test_SedisteNotNull() {
-            sediste = new Sediste();
-            Assert.IsNotNull(sediste);
-        }
-
-        [TestMethod]
-        public void Test_SedisteRed() {
-            sediste = new Sediste
-            {
-                SedisteId = 1,
-                Red = 'A',
-                Kolona = 3,
-                Sala = new Sala(),
-                SalaId = 1,
-                SlobodnoSediste = true,
-                Projekcija = new Projekcija(),
-                ProjekcijaId = 1,
-            };
-            Assert.IsNotNull(sediste);
-            Assert.AreEqual(sediste.Red.ToString().Length, 1);
-        }
-
-        [TestMethod]
-        public void Test_SedisteKolona()
+        public void Test_SedisteKolonaException()
         {
-            sediste = new Sediste
-            {
-                SedisteId = 1,
-                Red = 'A',
-                Kolona = 3,
-                Sala = new Sala(),
-                SalaId = 1,
-                SlobodnoSediste = true,
-                Projekcija = new Projekcija(),
-                ProjekcijaId = 1,
-            };
-            Assert.IsNotNull(sediste);
-            Assert.IsTrue(sediste.Kolona > 0);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => sediste.Kolona = 0);
         }
 
         [TestMethod]
-        public void Test_SedisteSalaNull()
+        [DataRow(-15)]
+        [DataRow(0)]
+        public void Test_SedisteRedException(int kolona)
         {
-            sediste = new Sediste
-            {
-                SedisteId = 1,
-                Red = 'A',
-                Kolona = 3,
-                SlobodnoSediste = true,
-                Projekcija = new Projekcija(),
-                ProjekcijaId = 1,
-            };
-            Assert.IsNotNull(sediste);
-            Assert.ThrowsException<NullReferenceException>(() => sediste.Sala.NazivSale);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => sediste.Kolona = kolona);
         }
 
-        [TestMethod]
-        public void Test_SedisteProjekcijaNull()
-        {
-            sediste = new Sediste
-            {
-                SedisteId = 1,
-                Red = 'A',
-                Kolona = 3,
-                SlobodnoSediste = true,
-                Sala = new Sala(),
-                SalaId = 1,
-            };
-            Assert.IsNotNull(sediste);
-            Assert.ThrowsException<NullReferenceException>(() => sediste.Projekcija.VremeProjekcije);
-        }
+
+
     }
 }
