@@ -45,11 +45,7 @@ namespace TestProject.ModelTests
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => film.Trajanje = trajanje);
         }
 
-        [TestMethod]
-        [DataRow(null)]
-        public void Test_FilmZanrException(Zanr p) {
-            Assert.ThrowsException<NullReferenceException>(() => film.Zanr = p);
-        }
+       
 
     }
 }

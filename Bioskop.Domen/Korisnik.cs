@@ -34,7 +34,7 @@ namespace Bioskop.Domen
         private Pol pol;
         public Pol Pol{
             get { return pol; }
-            set { if(Enum.IsDefined(typeof(Pol),value)) throw new NullReferenceException("Pol ima null vrednost");
+            set { if(!Enum.IsDefined(typeof(Pol),value)) throw new NullReferenceException("Pol ima null vrednost");
                 pol = value;
             } 
         }
@@ -58,12 +58,14 @@ namespace Bioskop.Domen
             {
                 if (string.IsNullOrEmpty(value))
                     throw new NullReferenceException("Email cannot be empty or null");
-
-                Regex regex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
-                Match match = regex.Match(value);
-                if (!match.Success)
+                if (value != "admin")
+                {
+                    Regex regex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
+                    Match match = regex.Match(value);
                     throw new PasswordException("Wrong password format!");
-
+                    if (!match.Success)
+                        password = value;
+                }
                 password = value;
             }
         }

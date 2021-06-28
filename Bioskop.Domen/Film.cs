@@ -44,7 +44,7 @@ namespace Bioskop.Domen
         public Zanr Zanr
         {
             get { return zanr; }
-            set {if(Enum.IsDefined(typeof(Zanr), value)) throw new NullReferenceException("Zanr ima null vrednost.");
+            set {if(!Enum.IsDefined(typeof(Zanr), value)) throw new NullReferenceException("Zanr ima null vrednost.");
                 zanr = value;
             }
         }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Bioskop.Podaci;
-using Bioskop.Podaci.UnitOfWork;
+﻿using Bioskop.Podaci.UnitOfWork;
 
 namespace BusinessLogic
 {

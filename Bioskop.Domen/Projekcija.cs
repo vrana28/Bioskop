@@ -22,16 +22,16 @@ namespace Bioskop.Domen
         /// <value>Represent film id as int</value>
         public int FilmId { get; set; }
         /// <value>Represent begin time of projection as dateTime</value>
-        /// <exception cref="NullReferenceException">Throws when vreme projekcije is null or wrong</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Throws when vreme projekcije is null or wrong</exception>
         private DateTime vremeProjekcije;
         public DateTime VremeProjekcije {
             get {return vremeProjekcije; }
-            set { if(value <= DateTime.Now || value == null) throw new  NullReferenceException("Lose vreme pocetka projekcije.");
+            set { if(value <= DateTime.Now) throw new  ArgumentOutOfRangeException("Lose vreme pocetka projekcije.");
                 vremeProjekcije = value;
             }
         }
         /// <value>Represent end time of projection as dateTime</value>
-        /// <exception cref="NullReferenceException">Throws when vreme kraja projekcije is null or wrong</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Throws when vreme kraja projekcije is null or wrong</exception>
         /// <exception cref="ProjekcijaException">Throws when vreme kraja projekcije is before vreme projekcije</exception>
         private DateTime vremeKrajaProjekcije;
         public DateTime VremeKrajaProjekcije
@@ -39,8 +39,8 @@ namespace Bioskop.Domen
             get { return vremeKrajaProjekcije; }
             set
             {
-                if (value <= DateTime.Now || value == null) throw new NullReferenceException("Lose vreme kraja projekcije.");
-                if (value <= vremeProjekcije) throw new ProjekcijaException("Ne moze kraj preojkcije da bude ranije od pocetka.");
+                if (value <= DateTime.Now ) throw new ArgumentOutOfRangeException("Lose vreme kraja projekcije.");
+                if (value <= vremeProjekcije) throw new ProjekcijaException("Ne moze kraj prejekcije da bude pre pocetka projekcije.");
                 vremeKrajaProjekcije = value;
             }
         }

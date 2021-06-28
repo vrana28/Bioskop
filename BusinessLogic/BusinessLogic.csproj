@@ -5,12 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bioskop.Podaci\Bioskop.Podaci.csproj" />
+    <Folder Include="Classes\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Models\" />
+    <Folder Include="Api\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\" />
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\Bioskop.Podaci\Bioskop.Podaci.csproj" />
   </ItemGroup>
 
 </Project>

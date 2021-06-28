@@ -31,17 +31,13 @@ namespace TestProject.SOTests
             controller = new ProjekcijaController(uow.Object);
             var expected = controller.Index() as ViewResult;
             var exp = (List<Projekcija>)expected.ViewData.Model;
-            var actual = uow.Object.Projekcija.VratiSve().ToList();
+            var actual = uow.Object.Projekcija.VratiSve().OrderBy(x => x.VremeProjekcije).ToList();
 
-            var ocekivani = exp[1];
-            var stvarni = actual[1];
+            var ocekivani = exp.First();
+            var stvarni = actual.First();
 
             Assert.IsNotNull(exp);
             Assert.AreEqual(ocekivani.ProjekcijaId, stvarni.ProjekcijaId);
-            for (int i = 0; i < actual.Count; i++)
-            {
-                Assert.AreEqual(exp[i].VremeProjekcije, actual[i].VremeProjekcije);
-            }
         }
 
         [TestMethod]

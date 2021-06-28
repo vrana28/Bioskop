@@ -39,7 +39,7 @@ namespace Bioskop.Domen
         private bool slobodnoSediste;
         public bool SlobodnoSediste{
             get { return slobodnoSediste; }
-            set { if(!value.Equals(true) || !value.Equals(false)) throw new ArgumentOutOfRangeException("Slobodno sediste moze da ima true/false vrednost.");
+            set { if(value!=true && value!=false) throw new ArgumentOutOfRangeException("Slobodno sediste moze da ima true/false vrednost.");
                 slobodnoSediste = value;
             }
         }

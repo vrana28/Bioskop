@@ -4,6 +4,7 @@ using Bioskop.Podaci.UnitOfWork;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TestProject.MoqClass
 {
@@ -82,8 +83,8 @@ namespace TestProject.MoqClass
                     Naziv = "Naziv 1",
                     Reziser = "Reziser 1" },
                     FilmId = 1,
-                    VremeProjekcije = new DateTime(2021,05,12,8,30,0),
-                    VremeKrajaProjekcije = new DateTime(2021, 05, 12, 9, 30, 0),
+                    VremeProjekcije = new DateTime(2021,08,12,8,30,0),
+                    VremeKrajaProjekcije = new DateTime(2021, 08, 12, 9, 30, 0),
                      Cena = 200
                 },
                 new Projekcija(){
@@ -97,8 +98,8 @@ namespace TestProject.MoqClass
                     Naziv = "Naziv 1",
                     Reziser = "Reziser 1" },
                     FilmId = 1,
-                    VremeProjekcije = new DateTime(2021,06,12,8,30,0),
-                    VremeKrajaProjekcije = new DateTime(2021, 06, 12, 9, 30, 0),
+                    VremeProjekcije = new DateTime(2021,09,12,8,30,0),
+                    VremeKrajaProjekcije = new DateTime(2021, 09, 12, 9, 30, 0),
                      Cena = 200
                 },
                 new Projekcija(){
@@ -112,8 +113,8 @@ namespace TestProject.MoqClass
                     Naziv = "Naziv 1",
                     Reziser = "Reziser 1" },
                     FilmId = 1,
-                    VremeProjekcije = new DateTime(2021,07,12,8,30,0),
-                    VremeKrajaProjekcije = new DateTime(2021, 07, 12, 9, 30, 0),
+                    VremeProjekcije = new DateTime(2021,07,10,8,30,0),
+                    VremeKrajaProjekcije = new DateTime(2021, 10, 12, 9, 30, 0),
                      Cena = 200
                 },
             };

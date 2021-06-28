@@ -6,25 +6,24 @@ using System.Text;
 namespace BusinessLogic.Interfaces
 {
     /// <summary>
-    /// Interface that manager working with FilmService
+    /// Interface that manager working with BookService
     /// </summary>
-    public interface IFilmService : IService
+    public interface IFilmService
     {
-
         /// <summary>
-        /// Finds film by filmdId
+        /// Return all films
+        /// </summary>
+        /// <returns>List of Films</returns>
+        List<Film> GetAll();
+        /// <summary>
+        /// Finds film by filmId
         /// </summary>
         /// <param name="filmId">Film id as int</param>
-        /// <returns>Film</returns>
+        /// <returns> Film</returns>
         Film Find(int? filmId);
-
         /// <summary>
-        /// Add film in database
+        /// Adds film in database
         /// </summary>
-        /// <param name="film">Film that need to be saved in database</param>
-        /// 
-        void Add(Film film);
-
-
+        void Add(Film f);
     }
 }

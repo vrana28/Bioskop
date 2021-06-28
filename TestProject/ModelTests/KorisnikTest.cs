@@ -36,12 +36,6 @@ namespace TestProject.ModelTests
             Assert.ThrowsException<NullReferenceException>(() => korisnik.Username = null);
         }
 
-        [TestMethod]
-        [DataRow(null)]
-        public void Test_KorisnikPolException(Pol p)
-        {
-            Assert.ThrowsException<NullReferenceException>(() => korisnik.Pol = p);
-        }
 
         [TestMethod]
         [DataRow("mare@gmail")]
@@ -62,14 +56,6 @@ namespace TestProject.ModelTests
             Assert.ThrowsException<PasswordException>(() => korisnik.Password = password);
         }
 
-        [TestMethod]
-        [DataRow("Nikola98@.")]
-        [DataRow("Nikola98!.")]
-        public void Test_KorisnikPasswordRegex(string password)
-        {
-            korisnik.Password = password;
-            Assert.AreEqual(korisnik.Password, password);
-        }
 
     }
 }

@@ -20,27 +20,27 @@ namespace TestProject.ModelTests
 
         [TestMethod]
         public void Test_ProjekcijaPocetakProjekcijeException() {
-            Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeKrajaProjekcije = DateTime.Now);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => projekcija.VremeKrajaProjekcije = DateTime.Now);
         }
 
         [TestMethod]
         public void Test_ProjekcijaKrajProjekcijeException()
         {
-            Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeKrajaProjekcije = DateTime.Now);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => projekcija.VremeKrajaProjekcije = DateTime.Now);
         }
 
         [TestMethod]
         [DataRow("01/03/2008 07:00:00")]
 
         public void Test_ProjekcijaPocetakException(string pocetak) {
-            Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeProjekcije = DateTime.Parse(pocetak));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => projekcija.VremeProjekcije = DateTime.Parse(pocetak));
         }
 
         [TestMethod]
         [DataRow("01/03/2008 07:00:00")]
         public void Test_ProjekcijaKrajException(string kraj)
         {
-            Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeKrajaProjekcije = DateTime.Parse(kraj));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => projekcija.VremeKrajaProjekcije = DateTime.Parse(kraj));
         }
 
         //[TestMethod]
