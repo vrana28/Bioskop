@@ -43,15 +43,6 @@ namespace TestProject.ModelTests
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => projekcija.VremeKrajaProjekcije = DateTime.Parse(kraj));
         }
 
-        //[TestMethod]
-        //[DataRow("07/01/2021 07:00:00")]
-        //public void Test_ProjekcijaKrajPocetak(string kraj) {
-        //    DateTime pocetak = new DateTime(2021, 7, 5, 7, 0, 0);
-        //    Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeProjekcije = pocetak);
-        //    Assert.ThrowsException<NullReferenceException>(() => projekcija.VremeKrajaProjekcije = DateTime.Parse(kraj));
-        //    Assert.ThrowsException<ProjekcijaException>(() => projekcija.VremeKrajaProjekcije = DateTime.Parse(kraj));
-        //}
-
         [TestMethod]
         public void Test_ProjekcijaCenaException()
         {
