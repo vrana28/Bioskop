@@ -10,4 +10,4 @@ IDE-VisualStudio 2019,Visual Studio Code
 
 Home Page                  |  Adding Film           |  Listing
 :-------------------------:|:-------------------------:|:-------------------------:
-<img src="views/home.png" alt="Home" width="300">  |  <img src="views/stars.png" alt="Stars" width="300"> | <img src="views/forks.png" alt="Forks" width="300">
+<img src="bioskop1.png" alt="Home" width="300">  |  <img src="bioskop2.png" alt="Stars" width="300"> | <img src="bioskop3.png" alt="Forks" width="300">
