@@ -8,6 +8,6 @@ IDE-VisualStudio 2019,Visual Studio Code
 
 ## Design
 
-Home Page                  |  Star Rank Page           |  Fork Rank Page
+Home Page                  |  Adding Film           |  Listing
 :-------------------------:|:-------------------------:|:-------------------------:
 <img src="views/home.png" alt="Home" width="300">  |  <img src="views/stars.png" alt="Stars" width="300"> | <img src="views/forks.png" alt="Forks" width="300">
