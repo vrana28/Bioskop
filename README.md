@@ -3,9 +3,8 @@ Bioskop is unique web site for managing cinema. He provides interesting interfac
 
 ## Development
 
-Ensure [git-popularity-backend](https://github.com/dordep19/git-popularity-backend) is serving on 127.0.0.1 before building app.
-
-Flutter app is developed using [Android Studio](https://developer.android.com/studio?gclid=Cj0KCQjwh_eFBhDZARIsALHjIKevbwnPSUMGx0A5-p8l_vtc-jxmzlyTZCbG1DgDQJlKgreICiXYI_kaAvK0EALw_wcB&gclsrc=aw.ds) and tested using Open Android emulator.
+Using C#, TypeScript, Html, Css, Entity framework,
+IDE-VisualStudio 2019,Visual Studio Code
 
 ## Design
 
